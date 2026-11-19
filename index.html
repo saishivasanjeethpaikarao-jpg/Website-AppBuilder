@@ -1500,14 +1500,27 @@ function genSite(opts){
   if(style === "dark") pal = PALETTES.dark;
   const ds = skillHas("designsystem"), mo = skillHas("motion"), a11y = skillHas("a11y"), land = skillHas("landing"), mob = skillHas("mobile");
   const cap = topic ? topic.charAt(0).toUpperCase() + topic.slice(1) : "";
+  let cleanHeadline = cap;
+  if (/^(?:generate|build|create|make|develop|design)\s+/i.test(cleanHeadline)) {
+    cleanHeadline = cleanHeadline.replace(/^(?:generate|build|create|make|develop|design)\s+(?:a\s+|an\s+|the\s+)?/i, "");
+    cleanHeadline = cleanHeadline.charAt(0).toUpperCase() + cleanHeadline.slice(1);
+  }
+  if (cleanHeadline.length > 55) {
+    const parts = cleanHeadline.split(/\s+(?:with|that|and|for)\s+/i);
+    if (parts[0] && parts[0].length >= 12 && parts[0].length <= 50) {
+      cleanHeadline = parts[0];
+    } else {
+      cleanHeadline = cleanHeadline.slice(0, 50).trim() + "…";
+    }
+  }
   const tagline = {
-    website: cap || "Quality you can trust, service you can feel",
-    landing: cap || "The simplest way to get started today",
-    portfolio: cap || "Selected work and projects",
-    shop: cap || "Handmade, honest, delivered to your door",
-    app: cap || "Your day, on track",
-    dashboard: cap || "Your business at a glance",
-  }[kind] || cap;
+    website: cleanHeadline || "Quality you can trust, service you can feel",
+    landing: cleanHeadline || "The simplest way to get started today",
+    portfolio: cleanHeadline || "Selected work and projects",
+    shop: cleanHeadline || "Handmade, honest, delivered to your door",
+    app: cleanHeadline || "Your day, on track",
+    dashboard: cleanHeadline || "Your business at a glance",
+  }[kind] || cleanHeadline || cap;
   const feats = {
     shop: [["Made by hand","Every piece is shaped, fired and finished by a real person."],["Fair prices","No middlemen — you pay for the craft, not the markup."],["Ships in 3 days","Packed with care and tracked to your door."]],
     app: [["Smart reminders","Gentle nudges at the right moment, never spam."],["Your streaks","Watch your consistency grow week after week."],["Private by design","Your data stays yours. No ads, no selling data."]],
@@ -1557,22 +1570,29 @@ function genSite(opts){
       <button type="button" data-screen="screenHome">⚙<span>Settings</span></button>
     </nav></div></section>` : "";
   const mainSections = kind === "dashboard" ? dashHTML : kind === "app" ? (appHTML + `<section class="wrap"><div class="cards">${featHTML}</div></section>`) :
-   `<section class="hero">
-    <p class="eyebrow">${esc(name)}</p>
-    <h1>${esc(tagline)}</h1>
-    <p class="sub">${esc(cap ? cap + " — done properly, at a fair price, by people who care about the details." : "Done properly, at a fair price, by people who care about the details.")}</p>
-    <p><a class="btn big" href="#contact">Get started</a> <a class="btn ghost" href="#features">See how it works</a></p>
+   `<section class="hero text-center py-16 px-6">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-medium mb-6 backdrop-blur-md">
+      <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+      <span>${esc(name)} · AI Engine Built</span>
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">${esc(cleanHeadline || tagline)}</h1>
+    <p class="sub text-slate-400 max-w-2xl mx-auto mb-8 text-base leading-relaxed">${esc(cap ? cap + " — engineered with clean architecture, rapid compilation, and responsive elegance." : "Engineered with clean architecture, rapid compilation, and responsive elegance.")}</p>
+    <p class="flex items-center justify-center gap-4 flex-wrap"><a class="btn big" href="#contact">Get started →</a> <a class="btn ghost" href="#features">See how it works</a></p>
   </section>
   ${proofHTML}
   <section id="features" class="wrap"><h2 class="center">Why ${esc(name)}</h2><div class="cards">${featHTML}</div></section>
   ${shopHTML}
   ${pricingHTML}`;
   const html = `<!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>${esc(name)} — ${esc(tagline)}</title>
+<title>${esc(name)} — ${esc(cleanHeadline || tagline)}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"><\/script>
 </head>
 <body>
 <header class="nav">
@@ -1604,14 +1624,14 @@ function genSite(opts){
 ${mob && kind !== "app" ? `<nav class="mobilebar"><a href="#">⌂<span>Home</span></a><a href="#features">☰<span>Explore</span></a><a href="#contact">✉<span>Contact</span></a></nav>` : ""}
 </body>
 </html>`;
-  const css = `@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&family=Bricolage+Grotesque:wght@600;800&display=swap');
+  const css = `@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 ${ds ? `/* Design tokens (Design Systems skill) */
 :root{
   --brand:${pal.brand}; --brand-dark:${pal.brandDark}; --ink:${pal.ink}; --muted:${pal.muted};
   --bg:${pal.bg}; --soft:${pal.soft}; --radius:14px; --max:1080px; --space:8px;
 }` : `:root{ --brand:${pal.brand}; --brand-dark:${pal.brandDark}; --ink:${pal.ink}; --muted:${pal.muted}; --bg:${pal.bg}; --soft:${pal.soft}; --radius:14px; --max:1080px; }`}
 *{box-sizing:border-box}
-body{margin:0;font-family:'Archivo',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px}
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:16px}
 h1,h2,h3{font-family:'Bricolage Grotesque','Archivo',sans-serif;letter-spacing:-.02em}
 .wrap{max-width:var(--max);margin:0 auto;padding:40px 20px}
 .center{text-align:center}
