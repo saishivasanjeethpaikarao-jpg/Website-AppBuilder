@@ -109,166 +109,150 @@
   <button type="button" class="integ-btn" id="pubPopAdvanced" style="display:block;margin:8px auto 0">Deploy to Vercel, Netlify, GitHub &amp; more →</button>
 </div>
 
-<!-- ============ HOME SCREEN ============ -->
-<div id="homeScreen">
-  <div class="home-inner">
-    <section class="ruixen-hero">
-      <div class="ruixen-header">
-        <div class="elhir-hero-badge" style="display:inline-flex;align-items:center;gap:7px;padding:5px 13px;border-radius:9999px;background:rgba(124, 58, 237, 0.15);border:1px solid rgba(167, 139, 250, 0.35);color:#C4B5FD;font-size:12.5px;font-weight:600;margin-bottom:16px;">
-          <span style="width:7px;height:7px;border-radius:50%;background:#8B5CF6;box-shadow:0 0 8px #8B5CF6;"></span>
-          <span>✦ Elhir Autonomous Studio · Universal BYOK</span>
+<!-- ============ HOME SCREEN (LOVABLE DASHBOARD FLAGSHIP) ============ -->
+<div id="homeScreen" class="lovable-dashboard">
+  <!-- Left Sidebar -->
+  <aside class="lovable-sidebar" id="homeSidebar">
+    <!-- Brand / Workspace Switcher -->
+    <div class="lovable-top-row">
+      <div class="lovable-logo-flame">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#lovFlame)"/><defs><linearGradient id="lovFlame" x1="2" y1="3" x2="22" y2="21.35"><stop stop-color="#F43F5E"/><stop offset="0.5" stop-color="#EC4899"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs></svg>
+      </div>
+      <div class="lovable-workspace-btn" id="lovableWorkspaceBtn" title="Switch workspace">
+        <span class="lovable-ws-avatar">R</span>
+        <span class="lovable-ws-name">ragg's Lovable</span>
+        <span class="lovable-ws-caret">▾</span>
+      </div>
+    </div>
+
+    <!-- Navigation List -->
+    <nav class="lovable-nav">
+      <button type="button" class="lovable-nav-btn active" id="btnNewProject" title="Create a new project">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <span>New</span>
+      </button>
+      <button type="button" class="lovable-nav-btn" id="btnSidebarSearch">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <span>Search</span>
+      </button>
+      <button type="button" class="lovable-nav-btn" id="btnSidebarProjects">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+        <span>Projects</span>
+      </button>
+      <button type="button" class="lovable-nav-btn" id="btnSidebarConnectors">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        <span>Connectors</span>
+      </button>
+      <button type="button" class="lovable-nav-btn" id="btnSidebarAutomations">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Automations</span>
+      </button>
+    </nav>
+
+    <!-- Sidebar Projects List -->
+    <div class="lovable-sidebar-sec">
+      <div class="lovable-sec-label">Projects</div>
+      <div class="lovable-proj-list" id="sidebarProjList"></div>
+    </div>
+
+    <div style="flex:1"></div>
+
+    <!-- Upgrade & Share Cards -->
+    <div class="lovable-sidebar-cards">
+      <div class="lovable-promo-card" id="btnPromoUpgrade">
+        <div class="lovable-promo-text">
+          <b>Upgrade to Pro</b>
+          <p>Unlock more features</p>
         </div>
-        <h1 class="ruixen-title">Elhir AI</h1>
-        <p class="ruixen-sub">Build software at the speed of thought — describe your app below.</p>
+        <div class="lovable-promo-icon purple">⚡</div>
+      </div>
+      <div class="lovable-promo-card" id="btnPromoShare">
+        <div class="lovable-promo-text">
+          <b>Share Lovable</b>
+          <p>Up to 400 credits per referral</p>
+        </div>
+        <div class="lovable-promo-icon gradient">✦</div>
+      </div>
+      <div class="lovable-user-profile" id="homeUserPill">
+        <div class="lovable-user-avatar">
+          <span>S</span>
+          <span class="lovable-dot-badge">1</span>
+        </div>
+        <div class="lovable-user-info">
+          <span class="lovable-user-name">Sai</span>
+          <span class="lovable-user-tag">Pro Plan</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Aurora Canvas Area -->
+  <main class="lovable-main-area">
+    <div class="lovable-aurora-card">
+      <!-- Top AI Banner Pill -->
+      <div class="lovable-ai-banner" id="bannerAiApps" title="Add AI features to your apps">
+        <span class="lovable-banner-icons">✦ ⚡ 🌐</span>
+        <span>Add AI to your apps →</span>
       </div>
 
-      <div class="ruixen-input-card">
-        <textarea class="prompt ruixen-textarea" id="homePrompt" placeholder="Type your request..."></textarea>
-        <div class="ruixen-footer">
-          <button type="button" class="ruixen-attach-btn" id="btnHomeAttach" title="Attach assets or mockups" aria-label="Attach">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+      <!-- Main Headline -->
+      <h1 class="lovable-hero-title">Got an idea, Sai?</h1>
+
+      <!-- Prompt Input Box -->
+      <div class="lovable-prompt-card">
+        <textarea class="prompt lovable-textarea" id="homePrompt" rows="2" placeholder="Ask Lovable to build a landing page for my..."></textarea>
+        <div class="lovable-prompt-foot">
+          <button type="button" class="lovable-foot-btn" id="btnHomeAttach" title="Attach file or mockup" aria-label="Attach">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
           </button>
-          <div class="ruixen-footer-right">
-            <select class="sel ruixen-model-sel" id="homeAiModel" aria-label="AI Engine">
-              <option value="auto">⚡ Auto Engine</option>
+          <div style="flex:1"></div>
+          <div class="lovable-foot-right">
+            <select class="sel lovable-mode-sel" id="homeAiModel" aria-label="AI Engine">
+              <option value="auto">Build ▾</option>
               <option value="groq">⚡ Groq</option>
               <option value="gemini">✨ Gemini</option>
-              <option value="nvidia">🟢 NVIDIA</option>
               <option value="claude">🟣 Claude</option>
               <option value="openai">⚪ ChatGPT</option>
-              <option value="custom">🌐 Ollama</option>
             </select>
-            <button class="ruixen-send-btn" id="btnHomeBuild" type="button" title="Build and launch" aria-label="Build">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+            <button type="button" class="lovable-foot-icon" id="btnHomeMic" title="Voice prompt" aria-label="Voice">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+            </button>
+            <button class="lovable-send-btn" id="btnHomeBuild" type="button" title="Build project" aria-label="Build">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Quick Action Pills from Ruixen Moon -->
-      <div class="ruixen-pills" id="homeQuickActions">
-        <button type="button" class="ruixen-pill" data-prompt="Generate a full-stack responsive web application with clean architecture, interactive dashboard, and dynamic tables">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          <span>Generate Code</span>
-        </button>
-        <button type="button" class="ruixen-pill" data-prompt="Create a modern SaaS landing page with animated hero, features grid, pricing table, and waitlist form">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
-          <span>Launch App</span>
-        </button>
-        <button type="button" class="ruixen-pill" data-prompt="Build a sleek design system UI component library with dark mode, glowing accents, and micro-interactions">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-          <span>UI Components</span>
-        </button>
-        <button type="button" class="ruixen-pill" data-prompt="Create a bespoke design system with cosmic dark mode, glassmorphism cards, and violet neon glows">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
-          <span>Theme Ideas</span>
-        </button>
-        <button type="button" class="ruixen-pill" data-prompt="Build a responsive analytics user dashboard with metric cards, chart visualizations, and user management">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
-          <span>User Dashboard</span>
-        </button>
-        <button type="button" class="ruixen-pill" data-prompt="Create an interactive modern landing page with clean layout, testimonials, and clear call-to-actions">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
-          <span>Landing Page</span>
-        </button>
-        <button type="button" class="ruixen-pill" data-prompt="Create an interactive developer documentation portal with searchable API docs, code snippets, and callouts">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="12" x2="12" y1="18" y2="12"/><line x1="9" x2="15" y1="15" y2="15"/></svg>
-          <span>Upload Docs</span>
-        </button>
-        <button type="button" class="ruixen-pill" data-prompt="Build an image assets showcase gallery with lightbox viewer, filters, and high-res preview grid">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-          <span>Image Assets</span>
-        </button>
-      </div>
+      <!-- Bottom Shelf Section: Projects & Templates -->
+      <section class="lovable-shelf">
+        <div class="lovable-shelf-head">
+          <div class="lovable-search-wrap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" id="homeSearchInput" placeholder="Search" aria-label="Search projects" />
+          </div>
+          <div class="lovable-shelf-tabs" role="tablist">
+            <button type="button" class="lovable-tab-pill active" id="tabRecentlyViewed" role="tab" aria-selected="true">Recently viewed</button>
+            <button type="button" class="lovable-tab-pill" id="tabLovableTemplates" role="tab" aria-selected="false">Lovable templates</button>
+          </div>
+          <div style="flex:1"></div>
+          <a href="#" class="lovable-browse-link" id="linkBrowseAll">Browse all →</a>
+        </div>
 
-      <!-- Hidden fallbacks for JS backwards compatibility -->
+        <!-- Project Grid (Recently Viewed) -->
+        <div class="proj-grid lovable-grid" id="projGrid"></div>
+
+        <!-- Templates Grid -->
+        <div class="tpl-grid home-tpls lovable-grid" id="homeTplGrid" style="display:none;"></div>
+      </section>
+
+      <!-- Hidden fallbacks for test & JS backward compatibility -->
       <select id="homeStyle" style="display:none;"><option value="modern" selected>Modern</option></select>
       <select id="homeKind" style="display:none;"><option value="website" selected>Website</option></select>
-    </section>
-
-    <div class="marquee" aria-hidden="true" style="display:none !important;"><div class="marquee-track"><span>REAL HTML + CSS + JS&nbsp;&nbsp;✦&nbsp;&nbsp;100% FREE&nbsp;&nbsp;✦&nbsp;&nbsp;YOUR OWN ACCOUNT&nbsp;&nbsp;✦&nbsp;&nbsp;WEBSITES + APP UIS&nbsp;&nbsp;✦&nbsp;&nbsp;EDIT THE CODE&nbsp;&nbsp;✦&nbsp;&nbsp;PUBLISH IT LIVE&nbsp;&nbsp;✦&nbsp;&nbsp;</span><span>REAL HTML + CSS + JS&nbsp;&nbsp;✦&nbsp;&nbsp;100% FREE&nbsp;&nbsp;✦&nbsp;&nbsp;YOUR OWN ACCOUNT&nbsp;&nbsp;✦&nbsp;&nbsp;WEBSITES + APP UIS&nbsp;&nbsp;✦&nbsp;&nbsp;EDIT THE CODE&nbsp;&nbsp;✦&nbsp;&nbsp;PUBLISH IT LIVE&nbsp;&nbsp;✦&nbsp;&nbsp;</span></div></div>
-
-    <section class="home-sec">
-      <div class="home-sec-head"><h2>Does it really make websites &amp; apps? Yes — here's how</h2></div>
-      <div class="proof-strip">
-        <div class="pstep"><span class="n">01</span><b>say it in plain words</b><p>Type what you want — a coffee shop site, a fitness app UI, a shop. The builder writes actual HTML, CSS and JavaScript for it, in your browser. No mockups, no screenshots of a site — the site itself.</p></div>
-        <div class="pstep"><span class="n">02</span><b>make it yours</b><p>Open the Code view and edit the real code, or turn on Edit on preview and click any word, image or button to restyle it visually. Every change lands back in the code.</p></div>
-        <div class="pstep"><span class="n">03</span><b>ship it live</b><p>Download the finished files, or publish straight to Vercel, Netlify, GitHub Pages and more with your own free accounts. What you build opens in any browser, on any phone.</p></div>
-      </div>
-      <div class="demo-row">
-        <span class="demo-label">don't take our word for it — tap one &amp; watch it build:</span>
-        <button type="button" class="demo-chip" data-demo="coffee">Coffee shop site</button>
-        <button type="button" class="demo-chip" data-demo="fitness">Fitness app UI</button>
-        <button type="button" class="demo-chip" data-demo="portfolio">Designer portfolio</button>
-        <button type="button" class="demo-chip" data-demo="shop">Online shop</button>
-      </div>
-    </section>
-
-    <section class="home-sec">
-      <div class="home-sec-head">
-        <h2>Your projects</h2>
-        <button class="btn small primary" id="btnNewProject" type="button">＋ New project</button>
-      </div>
-      <div class="proj-grid" id="projGrid"></div>
-    </section>
-
-    <section class="home-sec">
-      <div class="home-sec-head"><h2>Start from a template</h2></div>
-      <div class="tpl-grid home-tpls" id="homeTplGrid"></div>
-    </section>
-
-    <section class="home-sec">
-      <div class="home-sec-head"><h2>What's in this builder — free, no plans</h2></div>
-      <p class="lede" style="color:var(--muted);font-size:13.5px;line-height:1.6;margin:-6px 0 14px;max-width:720px">Everything in this builder is free — no plans, no credits. Cards marked <b>In the builder</b> work right here in the workspace. Cards marked <b>Replit reference</b> describe what Replit itself offers: this builder mirrors those ideas in concept only — they are not working features here. Descriptions follow Replit's own docs, linked per feature.</p>
-      <div class="feat-grid">
-        <div class="feat"><span class="ftag in">In the builder</span><b>Agent chat</b><p>Describe an app in plain words in the Build tab; the agent sets up the project, writes the code, checks its work and fixes problems. <a href="https://docs.replit.com/features/agent/overview.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Plan mode</b><p>The agent breaks a build into an ordered task list — what, why, and what “done” looks like — for review before any code is written. <a href="https://docs.replit.com/features/agent/plan-mode.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Free / Power / Max modes</b><p>Everyday building, a stronger mid-tier, or the most capable models for hard problems — picked per task in the Build tab. <a href="https://docs.replit.com/features/agent/agent-modes.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Checkpoints &amp; History</b><p>Every milestone is saved as a checkpoint in the History panel — one click restores an earlier version of your project. <a href="https://docs.replit.com/features/version-control/checkpoints-and-rollbacks.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Skills</b><p>Reusable instruction packs in the Skills tab that shape how the agent builds — layout, copy, SEO and more. Toggle them per project. <a href="https://docs.replit.com/features/agent/overview.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Plugins</b><p>The Plugins tab adds stock photos, icons and other extras to a build, straight from the workspace.</p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Publish</b><p>Publish a project live from the workspace — deploy to Vercel, Netlify, GitHub and more with your own tokens.</p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Code editor</b><p>A full code editor sits beside the chat — index.html, styles.css and script.js, editable by hand with the preview updating as you type.</p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Live preview</b><p>See every change instantly in the preview pane, switchable between desktop, tablet and phone sizes.</p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Visual editing</b><p>Click any element in the preview to select it, then restyle it in the inspector — text, colour, spacing — without touching code.</p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Secrets &amp; tokens</b><p>Your AI key and publish tokens live in Settings, kept in this browser and used only when you generate or publish. On Replit, Secrets are encrypted at rest and injected as environment variables. <a href="https://docs.replit.com/core-concepts/project-editor/app-setup/secrets.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Task board</b><p>Every project's work sits on a board in the workspace — Draft → Active → Ready → Done. Approved plans land here as tasks; stage one as Ready, hit Apply, and the builder saves a History checkpoint first, then makes the change.</p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Project brief &amp; always-on instructions</b><p>Each project has a Brief tab — what it is, who it's for, the rules — and the generator reads it before every build or edit. Your account-wide always-on instructions in Settings are prepended to every prompt on top of that.</p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Layout controls</b><p>The visual inspector now steers real layout — a 3×3 alignment picker, row/column direction, gap, and padding &amp; margin per side — written straight into the element's CSS in the preview.</p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Multi-piece projects</b><p>One project can hold a website plus HTML slide decks (present them full-screen, or export a standalone file) plus data views that chart numbers you paste in — switch pieces above the preview.</p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Project data &amp; uploads</b><p>The Data tab keeps simple tables you create and edit row by row, plus file uploads that go to your Supabase project's project-assets bucket while you're signed in — all saved with the project.</p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>SEO helper</b><p>Audits your site's title, description, headings, image alt text and social preview tags, scores them, and fixes what it can in one click. Publishes include a generated sitemap.xml and robots.txt.</p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Self-check</b><p>Every preview refresh re-runs checks inside the preview itself — console errors, broken links and images, missing alt text and page weight — and lists the results under the preview.</p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Feedback inbox</b><p>A small widget snippet for your published site posts visitor feedback to your project's Supabase feedback store; the Inbox tab lists it, with a one-tap “send to generator” for acting on it.</p></div>
-        <div class="feat ref"><span class="ftag ref">Replit reference</span><b>Multi-agent teams</b><p>On Replit, worker-agent teams take on repo work in parallel — connect a repository, run dev previews, open pull requests. Not part of this builder. <a href="https://docs.replit.com/build/code/connect-your-repository.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat ref"><span class="ftag ref">Replit reference</span><b>App Testing</b><p>On Replit, the agent tests the app it built in a real browser, clicking through flows like a user, then fixes what it finds. This builder offers a design audit instead — not automated app testing. <a href="https://docs.replit.com/features/agent/app-testing.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat ref"><span class="ftag ref">Replit reference</span><b>Design Canvas</b><p>On Replit, Design Canvas turns a prompt into frames on an infinite canvas you edit visually, then builds a frame into a working app. This builder starts from the prompt and the live preview instead. <a href="https://docs.replit.com/design/what-is-replit-design.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat ref"><span class="ftag ref">Replit reference</span><b>Databases &amp; storage</b><p>On Replit, managed PostgreSQL for structured data plus object storage for files, with separate dev and production databases. This builder's Data tab keeps simple tables and uploads in your project storage instead — no SQL database is included. <a href="https://docs.replit.com/learn/projects-and-artifacts/storage-and-databases.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat"><span class="ftag in">In the builder</span><b>Accounts &amp; login</b><p>Real cloud accounts, like Replit: log in or sign up with email, Google or GitHub, and every account is fully separate — its own projects, files, checkpoints, profile and published sites, stored in Supabase and synced across your devices. On Replit, sign-in comes out of the box with Replit Auth or Clerk. <a href="https://docs.replit.com/build/add-login.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat ref"><span class="ftag ref">Replit reference</span><b>Deployments</b><p>On Replit, publishing offers Autoscale, Static, Reserved VM and Scheduled deployments, with machine power and region controls. Here, Publish (above) sends your site to hosts like Vercel or Netlify instead. <a href="https://docs.replit.com/features/publishing/deployment-types.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat ref"><span class="ftag ref">Replit reference</span><b>Custom domains</b><p>On Replit, you can point your own domain at a published app, with DNS records shown in-product and HTTPS automatic. This builder doesn't attach domains — that's set up at your host after publishing. <a href="https://docs.replit.com/build/add-custom-domain.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat ref"><span class="ftag ref">Replit reference</span><b>Git &amp; GitHub</b><p>On Replit, checkpoints double as Git commits, with a visual Git pane, full Git CLI, per-file history and GitHub/GitLab import and PRs. Here you can download your code as HTML or ZIP, and publish through the Publish flow. <a href="https://docs.replit.com/learn/projects-and-artifacts/version-control.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat ref"><span class="ftag ref">Replit reference</span><b>Mobile apps</b><p>On Replit, you can build native iOS/Android apps with Expo from one prompt, preview on your phone and ship via App Store Connect. This builder makes websites and app-style interfaces for the browser. <a href="https://docs.replit.com/build/mobile-app.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat ref"><span class="ftag ref">Replit reference</span><b>Live-app agents</b><p>On Replit, Monitoring, Performance and SEO agents watch a published app and fix issues after launch. Nothing monitors your site from here once you've published. <a href="https://docs.replit.com/features/publishing/monitoring-agent.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat ref"><span class="ftag ref">Replit reference</span><b>Integrations &amp; MCP</b><p>On Replit, 100+ connectors (Stripe, OpenAI, Shopify…) activate from a prompt, plus MCP servers in and out. This builder's equivalent is the Plugins tab, above. <a href="https://docs.replit.com/features/integrations/overview.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-        <div class="feat ref"><span class="ftag ref">Replit reference</span><b>Teams &amp; multiplayer</b><p>On Replit, teams co-build in real time with cursor presence, a shared task board and per-person Agent threads. This builder is single-user, in your own browser. <a href="https://docs.replit.com/build/invite-teammates.md" target="_blank" rel="noopener">Replit docs ↗</a></p></div>
-      </div>
-    </section>
-
-    <footer class="site-foot">
-      <span class="sf-brand"><svg class="logo-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true" focusable="false"><rect x="2" y="2" width="40" height="40" rx="10" fill="#161922" stroke="rgba(99,102,241,0.4)" stroke-width="1.5"/><path d="M13 16L21 22L13 28" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 28H31" stroke="#6366F1" stroke-width="2.5" stroke-linecap="round"/></svg> elhir.com Studio</span>
-      <button type="button" data-nav="home">Home</button>
-      <button type="button" data-nav="projects">Projects</button>
-      <button type="button" data-nav="workspace">Workspace</button>
-      <button type="button" data-nav="skills">Skills</button>
-      <button type="button" data-nav="plugins">Plugins</button>
-      <button type="button" data-nav="publish">Publish</button>
-      <button type="button" data-nav="profile">Profile</button>
-      <button type="button" data-nav="settings">Settings</button>
-      <span class="sf-note">Features marked “In the builder” above work here and are free — no plans, no credits. Features marked “Replit reference” describe Replit only and aren't included here. Your projects, profile and settings sync to your Supabase account, so they're waiting on every device you sign in on.</span>
-    </footer>
-  </div>
+    </div>
+  </main>
 </div>
+
 
 <!-- ============ PROFILE SCREEN ============ -->
 <div id="profileScreen">
@@ -2927,143 +2911,298 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
     return Math.floor(s / 86400) + "d ago";
   }
 
+  var SHOWCASE_PROJECTS = [
+    {
+      id: "p-career-compass",
+      name: "Career Compass",
+      desc: "Guiding 10th Graders to Their Future Path",
+      published: true,
+      updatedAt: Date.now() - 4 * 3600 * 1000,
+      timeLabel: "Viewed 4 hours ago",
+      iconColor: "#3B82F6",
+      bgGradient: "linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%)",
+      previewHtml: "<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,sans-serif;color:#1E3A8A;text-align:center;padding:24px;background:#F8FAFC;'><div style='font-size:12px;font-weight:700;letter-spacing:1.5px;color:#3B82F6;margin-bottom:8px;'>✦ PATHFINDER</div><h2 style='font-size:19px;font-weight:700;color:#0F172A;margin:0 0 10px;line-height:1.25;'>Guiding 10th Graders to Their Future Path</h2><div style='display:inline-flex;gap:12px;margin-top:4px;'><span style='font-size:11px;padding:3px 10px;border-radius:99px;background:#E0E7FF;color:#3730A3;font-weight:600;'>Interactive Quiz</span><span style='font-size:11px;padding:3px 10px;border-radius:99px;background:#E0F2FE;color:#0369A1;font-weight:600;'>Career Roadmap</span></div></div>"
+    },
+    {
+      id: "p-love-story-reel",
+      name: "Your Love Story Reel",
+      desc: "Before You Decide...",
+      published: false,
+      updatedAt: Date.now() - 32 * 86400 * 1000,
+      timeLabel: "Viewed Oct 18, 2026",
+      iconColor: "#EC4899",
+      bgGradient: "radial-gradient(circle at 50% 35%, #2E1065 0%, #030712 75%)",
+      previewHtml: "<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,sans-serif;color:#F8FAFC;text-align:center;padding:24px;background:radial-gradient(circle at 50% 30%, #3B0764 0%, #09090B 80%);'><div style='font-size:32px;margin-bottom:8px;filter:drop-shadow(0 0 12px rgba(236,72,153,0.5));'>🌕</div><h2 style='font-size:18px;font-style:italic;font-weight:400;letter-spacing:0.5px;color:#FDF2F8;margin:0 0 8px;'>Before You Decide...</h2><div style='font-size:11px;color:#C084FC;letter-spacing:0.3px;'>Cinematic Anniversary Video Timeline</div></div>"
+    },
+    {
+      id: "p-home-harmony",
+      name: "Home Harmony",
+      desc: "Smart Home IoT Control",
+      published: true,
+      updatedAt: Date.now() - 110 * 86400 * 1000,
+      timeLabel: "Viewed Jul 30, 2026",
+      iconColor: "#EAB308",
+      bgGradient: "linear-gradient(135deg, #18181B 0%, #09090B 100%)",
+      previewHtml: "<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,sans-serif;color:#F4F4F5;text-align:center;padding:24px;background:#0A0A0C;'><div style='font-size:20px;color:#FACC15;margin-bottom:8px;'>💡 24.5°C</div><h2 style='font-size:18px;font-weight:600;margin:0 0 6px;'>Home Harmony</h2><div style='font-size:11px;color:#71717A;'>Smart Climate & Ambience Hub</div></div>"
+    },
+    {
+      id: "p-contribution-canvas",
+      name: "Contribution Canvas",
+      desc: "Your autonomous chief of staff",
+      published: false,
+      updatedAt: Date.now() - 145 * 86400 * 1000,
+      timeLabel: "Viewed Jun 25, 2026",
+      iconColor: "#06B6D4",
+      bgGradient: "radial-gradient(circle at 75% 50%, #1E1B4B 0%, #020617 80%)",
+      previewHtml: "<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,sans-serif;color:#F8FAFC;text-align:center;padding:24px;background:radial-gradient(circle at 80% 45%, #1E1B4B 0%, #030712 75%);'><h2 style='font-size:17px;font-weight:600;color:#F1F5F9;margin:0 0 10px;line-height:1.3;'>Your autonomous<br/>chief of staff.</h2><div style='display:inline-block;width:24px;height:24px;border-radius:50%;background:#38BDF8;box-shadow:0 0 20px #38BDF8;margin:4px 0 8px;'></div><div style='font-size:11px;color:#94A3B8;'>Win Vibe25Hp · Aura Demo</div></div>"
+    },
+    {
+      id: "p-my-hearts-story",
+      name: "My Heart's Story",
+      desc: "Visual story novel",
+      published: false,
+      updatedAt: Date.now() - 154 * 86400 * 1000,
+      timeLabel: "Viewed Jun 16, 2026",
+      iconColor: "#10B981",
+      bgGradient: "linear-gradient(135deg, #064E3B 0%, #022C22 100%)",
+      previewHtml: "<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,sans-serif;color:#ECFDF5;text-align:center;padding:24px;background:linear-gradient(135deg, #064E3B 0%, #022C22 100%);'><h2 style='font-size:19px;font-weight:500;letter-spacing:1px;color:#E6FFFA;margin:0 0 8px;'>Silence</h2><div style='font-size:11.5px;color:#6EE7B7;'>An evocative visual romantic narrative</div></div>"
+    },
+    {
+      id: "p-connect-sphere",
+      name: "Connect Sphere",
+      desc: "Welcome to ConnectSphere",
+      published: true,
+      updatedAt: Date.now() - 213 * 86400 * 1000,
+      timeLabel: "Viewed Apr 18, 2026",
+      iconColor: "#8B5CF6",
+      bgGradient: "linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%)",
+      previewHtml: "<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,sans-serif;color:#0F172A;text-align:center;padding:24px;background:#FFFFFF;'><div style='display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:#7C3AED;color:#FFF;font-size:18px;margin-bottom:8px;'>🌐</div><h2 style='font-size:17px;font-weight:600;margin:0 0 6px;'>Welcome to ConnectSphere</h2><div style='font-size:11px;color:#64748B;'>Sign in to access your universal workspace</div></div>"
+    }
+  ];
+
+  function seedShowcaseProjectsIfNeeded(){
+    var existingIds = {};
+    projects.forEach(function(p){ existingIds[p.name] = p; });
+    var newProjects = [];
+    SHOWCASE_PROJECTS.forEach(function(sc){
+      var existing = existingIds[sc.name];
+      if(!existing){
+        var starterCopy = JSON.parse(JSON.stringify(STARTER));
+        starterCopy["index.html"] = "<!DOCTYPE html><html><head><meta charset='utf-8'><title>" + esc(sc.name) + "</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:sans-serif;}</style></head><body>" + sc.previewHtml + "</body></html>";
+        newProjects.push({
+          id: sc.id,
+          name: sc.name,
+          desc: sc.desc,
+          published: sc.published,
+          timeLabel: sc.timeLabel,
+          bgGradient: sc.bgGradient,
+          previewHtml: sc.previewHtml,
+          files: starterCopy,
+          updatedAt: sc.updatedAt
+        });
+      } else {
+        existing.previewHtml = sc.previewHtml;
+        existing.bgGradient = sc.bgGradient;
+        existing.timeLabel = sc.timeLabel;
+        existing.published = sc.published;
+        newProjects.push(existing);
+      }
+    });
+
+    // Add user custom projects afterwards
+    projects.forEach(function(p){
+      var isSc = SHOWCASE_PROJECTS.some(function(sc){ return sc.name === p.name; });
+      if(!isSc && !newProjects.some(function(np){ return np.id === p.id; })){
+        newProjects.push(p);
+      }
+    });
+
+    projects = newProjects;
+    store("wb_projects", projects);
+  }
+
   function renderHome(){
-    var grid = document.getElementById("projGrid");
-    if(!projects.length){
-      grid.innerHTML = '<div class="proj-empty">No projects yet — describe one above or start from a template.</div>';
-    } else {
-      grid.innerHTML = projects.map(function(p){
-        var isPub = !!((readStore("wb_published_projects", {}) || {})[p.name] || p.published);
-        var editedDate = new Date(p.updatedAt).toLocaleDateString("en-IN", { day:"numeric", month:"short", year:"numeric" });
-        return '<article class="proj-card" data-proj="' + p.id + '">' +
-          '<div class="proj-thumb" data-open="' + p.id + '" title="Open ' + esc(p.name) + '"><iframe sandbox="allow-scripts" tabindex="-1" loading="lazy" title="Preview of ' + esc(p.name) + '" srcdoc="' + esc(docFor(p.files)) + '"></iframe><span class="proj-pub-pill ' + (isPub ? "is-pub" : "") + '">' + (isPub ? "● Published" : "○ Draft") + '</span></div>' +
-          '<div class="proj-body">' +
-            '<div class="proj-name" title="' + esc(p.name) + '">' + esc(p.name) + (p.id === currentProjectId ? ' <span class="tok-badge set">OPEN</span>' : "") + '</div>' +
-            '<div class="proj-meta"><span class="proj-type">' + esc(p.kind || "Website") + '</span> Edited ' + editedDate + ' · ' + ago(p.updatedAt) + ' · 3 files</div>' +
-            '<div class="proj-actions">' +
-              '<button type="button" class="btn small primary" data-open="' + p.id + '">Open</button>' +
-              '<button type="button" class="btn small" data-ren="' + p.id + '">Rename</button>' +
-              '<button type="button" class="btn small" data-dup="' + p.id + '">Duplicate</button>' +
-              '<button type="button" class="btn small danger" data-del="' + p.id + '" style="color:var(--bad)">Delete</button>' +
-            '</div>' +
-          '</div></article>';
+    seedShowcaseProjectsIfNeeded();
+
+    // Render Sidebar Projects List (Matching screenshot)
+    var sidebarList = document.getElementById("sidebarProjList");
+    if(sidebarList){
+      var sidebarItems = [
+        { name: "Home Harmony", icon: "H", color: "#EAB308" },
+        { name: "Contribution Canvas", icon: "C", color: "#06B6D4" },
+        { name: "Career Compass", icon: "C", color: "#3B82F6" },
+        { name: "My Heart's Story", icon: "M", color: "#10B981" },
+        { name: "Your Love Story Reel", icon: "Y", color: "#EC4899" }
+      ];
+      sidebarList.innerHTML = sidebarItems.map(function(item){
+        var p = projects.find(function(x){ return x.name === item.name; });
+        var pid = p ? p.id : "p-home-harmony";
+        return '<div class="lovable-sidebar-proj-item" data-open="' + pid + '" title="' + esc(item.name) + '"><span class="lovable-sidebar-proj-icon" style="background:rgba(255,255,255,0.08);color:' + item.color + ';">' + item.icon + '</span><span class="lovable-sidebar-proj-name">' + esc(item.name) + '</span></div>';
       }).join("");
     }
+
+    // Render Shelf Grid (3 cols x 2 rows)
+    var grid = document.getElementById("projGrid");
+    if(grid){
+      if(!projects.length){
+        grid.innerHTML = '<div class="proj-empty">No projects yet — describe one above or start from a template.</div>';
+      } else {
+        grid.innerHTML = projects.slice(0, 6).map(function(p){
+          var isPub = !!((readStore("wb_published_projects", {}) || {})[p.name] || p.published);
+          var timeText = p.timeLabel || ago(p.updatedAt);
+          var thumbContent = "";
+          if(p.previewHtml){
+            thumbContent = '<div class="lovable-card-thumb-mockup" style="' + (p.bgGradient ? "background:" + p.bgGradient : "") + '">' + p.previewHtml + '</div>';
+          } else {
+            thumbContent = '<iframe sandbox="allow-scripts" tabindex="-1" loading="lazy" title="Preview of ' + esc(p.name) + '" srcdoc="' + esc(docFor(p.files)) + '"></iframe>';
+          }
+
+          return '<article class="lovable-card proj-card" data-proj="' + p.id + '" data-open="' + p.id + '"><div class="lovable-card-thumb proj-thumb">' + thumbContent + (isPub ? '<span class="lovable-card-badge">Published</span>' : '') + '</div><div class="lovable-card-foot"><div class="lovable-card-avatar">P</div><div class="lovable-card-info"><div class="lovable-card-title proj-name" title="' + esc(p.name) + '">' + esc(p.name) + '</div><div class="lovable-card-sub">' + esc(timeText) + '</div></div></div></article>';
+        }).join("");
+      }
+    }
+
+    // Render Templates Grid
     var tg = document.getElementById("homeTplGrid");
-    tg.innerHTML = TEMPLATES.map(function(t){
-      return '<button type="button" class="tpl" data-htpl="' + t.id + '"><b>' + esc(t.name) + '</b><span>' + esc(t.desc) + '</span></button>';
-    }).join("");
-    tg.querySelectorAll("[data-htpl]").forEach(function(b){
-      b.addEventListener("click", function(){
-        var t = null;
-        TEMPLATES.forEach(function(x){ if(x.id === b.dataset.htpl) t = x; });
-        if(!t) return;
-        var out = t.make();
-        createProject(t.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "untitled", { "index.html": out.html, "styles.css": out.css, "script.js": out.js });
-        toast("New project from template: " + t.name);
+    if(tg){
+      tg.innerHTML = TEMPLATES.map(function(t){
+        return '<button type="button" class="tpl lovable-card" data-htpl="' + t.id + '" style="padding:18px;text-align:left;border-radius:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);cursor:pointer;display:flex;flex-direction:column;gap:6px;"><b style="color:#FFF;font-size:14px;">' + esc(t.name) + '</b><span style="color:rgba(255,255,255,0.55);font-size:12px;line-height:1.4;">' + esc(t.desc) + '</span></button>';
+      }).join("");
+      tg.querySelectorAll("[data-htpl]").forEach(function(b){
+        b.addEventListener("click", function(){
+          var t = null;
+          TEMPLATES.forEach(function(x){ if(x.id === b.dataset.htpl) t = x; });
+          if(!t) return;
+          var out = t.make();
+          createProject(t.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "untitled", { "index.html": out.html, "styles.css": out.css, "script.js": out.js });
+          toast("New project from template: " + t.name);
+        });
+      });
+    }
+  }
+
+  /* Project card actions & Sidebar open (delegated) */
+  document.addEventListener("click", function(e){
+    var open = e.target.closest("[data-open]");
+    if(open){
+      var pid = open.dataset.open;
+      if(pid) { openProject(pid); return; }
+    }
+  });
+
+  /* Navigation & Action Listeners */
+  var tabRec = document.getElementById("tabRecentlyViewed");
+  var tabTpl = document.getElementById("tabLovableTemplates");
+  var pGrid = document.getElementById("projGrid");
+  var tGrid = document.getElementById("homeTplGrid");
+
+  if(tabRec && tabTpl && pGrid && tGrid){
+    tabRec.addEventListener("click", function(){
+      tabRec.classList.add("active"); tabRec.setAttribute("aria-selected", "true");
+      tabTpl.classList.remove("active"); tabTpl.setAttribute("aria-selected", "false");
+      pGrid.style.display = "grid";
+      tGrid.style.display = "none";
+    });
+    tabTpl.addEventListener("click", function(){
+      tabTpl.classList.add("active"); tabTpl.setAttribute("aria-selected", "true");
+      tabRec.classList.remove("active"); tabRec.setAttribute("aria-selected", "false");
+      tGrid.style.display = "grid";
+      pGrid.style.display = "none";
+    });
+  }
+
+  var searchInp = document.getElementById("homeSearchInput");
+  if(searchInp && pGrid){
+    searchInp.addEventListener("input", function(){
+      var q = searchInp.value.toLowerCase().trim();
+      pGrid.querySelectorAll(".lovable-card").forEach(function(card){
+        var title = (card.querySelector(".lovable-card-title")?.textContent || "").toLowerCase();
+        var sub = (card.querySelector(".lovable-card-sub")?.textContent || "").toLowerCase();
+        card.style.display = (!q || title.includes(q) || sub.includes(q)) ? "" : "none";
       });
     });
   }
 
-  /* Project card actions (delegated) */
-  document.getElementById("projGrid").addEventListener("click", function(e){
-    var open = e.target.closest("[data-open]");
-    if(open){ openProject(open.dataset.open); return; }
-    var dup = e.target.closest("[data-dup]");
-    if(dup){
-      var src = null;
-      projects.forEach(function(x){ if(x.id === dup.dataset.dup) src = x; });
-      if(src){
-        var copy = { id: "p-" + Date.now().toString(36) + Math.floor(Math.random() * 999), name: src.name + "-copy", files: JSON.parse(JSON.stringify(src.files)), updatedAt: Date.now() };
-        projects.unshift(copy); store("wb_projects", projects); renderHome(); toast("Project duplicated");
-      }
-      return;
-    }
-    var del = e.target.closest("[data-del]");
-    if(del){
-      if(!del.classList.contains("armed")){ del.classList.add("armed"); del.textContent = "Sure?"; setTimeout(function(){ del.classList.remove("armed"); del.textContent = "Delete"; }, 2600); return; }
-      var wasCurrent = del.dataset.del === currentProjectId;
-      projects = projects.filter(function(x){ return x.id !== del.dataset.del; });
-      if(!projects.length){
-        projects = [{ id: "p-" + Date.now().toString(36), name: "my-website", files: JSON.parse(JSON.stringify(STARTER)), updatedAt: Date.now() }];
-      }
-      if(wasCurrent) currentProjectId = projects[0].id;
-      store("wb_projects", projects); store("wb_current_project", currentProjectId);
-      renderHome(); toast("Project deleted");
-      return;
-    }
-    var ren = e.target.closest("[data-ren]");
-    if(ren){
-      var card = ren.closest(".proj-card");
-      var nameEl = card.querySelector(".proj-name");
-      var p = null;
-      projects.forEach(function(x){ if(x.id === ren.dataset.ren) p = x; });
-      if(!p || !nameEl) return;
-      var input = document.createElement("input");
-      input.className = "proj-name-input"; input.value = p.name; input.setAttribute("aria-label", "Project name");
-      nameEl.replaceWith(input); input.focus(); input.select();
-      var commit = function(){
-        var v = slugName(input.value);
-        p.name = v; p.updatedAt = Date.now();
-        if(p.id === currentProjectId) document.getElementById("projectName").value = v;
-        store("wb_projects", projects); renderHome(); toast("Renamed to " + v);
-      };
-      input.addEventListener("blur", commit);
-      input.addEventListener("keydown", function(ev){ if(ev.key === "Enter"){ ev.preventDefault(); input.blur(); } if(ev.key === "Escape"){ input.value = p.name; input.blur(); } });
-    }
-  });
-
-  /* Navigation */
-  document.getElementById("btnHome").addEventListener("click", function(){ showScreen("home"); });
-  document.getElementById("brandHome").addEventListener("click", function(){ showScreen("home"); });
-  document.getElementById("btnEnter").addEventListener("click", function(){ openProject(currentProjectId); });
-  document.getElementById("btnNewProject").addEventListener("click", function(){
+  var btnHome = document.getElementById("btnHome");
+  if(btnHome) btnHome.addEventListener("click", function(){ showScreen("home"); });
+  var brandHome = document.getElementById("brandHome");
+  if(brandHome) brandHome.addEventListener("click", function(){ showScreen("home"); });
+  var btnEnter = document.getElementById("btnEnter");
+  if(btnEnter) btnEnter.addEventListener("click", function(){ openProject(currentProjectId); });
+  var btnNewProj = document.getElementById("btnNewProject");
+  if(btnNewProj) btnNewProj.addEventListener("click", function(){
     var blank = null;
     TEMPLATES.forEach(function(x){ if(x.id === "blank") blank = x; });
-    var out = blank.make();
+    var out = blank ? blank.make() : { html: STARTER["index.html"], css: STARTER["styles.css"], js: STARTER["script.js"] };
     createProject("untitled", { "index.html": out.html, "styles.css": out.css, "script.js": out.js });
-    toast("New blank project — describe it in the Build tab or start typing code");
+    toast("New project created");
   });
-  document.getElementById("btnHomeBuild").addEventListener("click", function(){
-    var prompt = document.getElementById("homePrompt").value.trim();
+
+  var btnHBuild = document.getElementById("btnHomeBuild");
+  if(btnHBuild) btnHBuild.addEventListener("click", function(){
+    var promptEl = document.getElementById("homePrompt");
+    var prompt = promptEl ? promptEl.value.trim() : "";
     createProject("untitled", STARTER);
-    if(prompt) document.getElementById("aiPrompt").value = prompt;
-    document.getElementById("aiStyle").value = document.getElementById("homeStyle").value;
-    document.getElementById("aiKind").value = document.getElementById("homeKind").value;
-    document.getElementById("aiPrompt").dispatchEvent(new Event("input"));
-    document.getElementById("btnGenerate").click();
-  });
-  document.querySelectorAll(".ruixen-pill").forEach(function(pill){
-    pill.addEventListener("click", function(){
-      var p = pill.dataset.prompt;
-      if(!p) return;
-      var hp = document.getElementById("homePrompt");
-      if(hp){
-        hp.value = p;
-        hp.focus();
-        var sb = document.querySelector(".ruixen-send-btn");
-        if(sb) sb.classList.add("active");
+    if(prompt){
+      var aiP = document.getElementById("aiPrompt");
+      if(aiP){
+        aiP.value = prompt;
+        aiP.dispatchEvent(new Event("input"));
       }
-    });
+    }
+    var hStyle = document.getElementById("homeStyle");
+    if(hStyle && document.getElementById("aiStyle")) document.getElementById("aiStyle").value = hStyle.value;
+    var hKind = document.getElementById("homeKind");
+    if(hKind && document.getElementById("aiKind")) document.getElementById("aiKind").value = hKind.value;
+    var btnGen = document.getElementById("btnGenerate");
+    if(btnGen) btnGen.click();
   });
+
   var hpInput = document.getElementById("homePrompt");
   if(hpInput){
     hpInput.addEventListener("input", function(){
-      var sb = document.querySelector(".ruixen-send-btn");
+      var sb = document.getElementById("btnHomeBuild");
       if(sb) sb.classList.toggle("active", !!hpInput.value.trim());
     });
     hpInput.addEventListener("keydown", function(e){
       if(e.key === "Enter" && !e.shiftKey){
         e.preventDefault();
-        document.getElementById("btnHomeBuild").click();
+        var bhb = document.getElementById("btnHomeBuild");
+        if(bhb) bhb.click();
       }
     });
   }
-  document.querySelectorAll("[data-goto]").forEach(function(b){
-    b.addEventListener("click", function(){
-      openProject(currentProjectId);
-      showTab(b.dataset.goto);
-    });
+
+  // Sidebar extra buttons
+  var btnSidebarSearch = document.getElementById("btnSidebarSearch");
+  if(btnSidebarSearch && searchInp) btnSidebarSearch.addEventListener("click", function(){ searchInp.focus(); });
+  var btnSidebarProjects = document.getElementById("btnSidebarProjects");
+  if(btnSidebarProjects && tabRec) btnSidebarProjects.addEventListener("click", function(){ tabRec.click(); });
+  var btnSidebarConnectors = document.getElementById("btnSidebarConnectors");
+  if(btnSidebarConnectors) btnSidebarConnectors.addEventListener("click", function(){
+    openProject(currentProjectId);
+    showTab("plugins");
+  });
+  var btnSidebarAutomations = document.getElementById("btnSidebarAutomations");
+  if(btnSidebarAutomations) btnSidebarAutomations.addEventListener("click", function(){
+    toast("Automations engine: running in background");
+  });
+  var btnPromoUp = document.getElementById("btnPromoUpgrade");
+  if(btnPromoUp) btnPromoUp.addEventListener("click", function(){ toast("You have full Pro Studio access included!"); });
+  var btnPromoSh = document.getElementById("btnPromoShare");
+  if(btnPromoSh) btnPromoSh.addEventListener("click", function(){
+    if(navigator.clipboard) { navigator.clipboard.writeText(window.location.origin); toast("Share link copied to clipboard!"); }
+  });
+  var homeUserPill = document.getElementById("homeUserPill");
+  if(homeUserPill) homeUserPill.addEventListener("click", function(){
+    if(window.__go) window.__go("profile");
+    else showScreen("profile");
+  });
+  var bannerAi = document.getElementById("bannerAiApps");
+  if(bannerAi) bannerAi.addEventListener("click", function(){
+    openProject(currentProjectId);
+    showTab("skills");
+    toast("Configure AI skills & LLM providers");
   });
 
   renderHome();
