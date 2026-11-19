@@ -1552,19 +1552,31 @@ body.gated #authBack{display:none !important}
         </section>
 
         <section class="card2" id="setAi">
-          <h2>AI &amp; models</h2>
-          <p class="sub">Bring your own key for outside AI services, and choose how the builder routes work. Keys are stored only in this browser and sent only to the provider you use.</p>
-          <div class="fld"><label for="setAiOpenai">OpenAI API key</label><input type="password" id="setAiOpenai" placeholder="sk-…" autocomplete="off" /></div>
-          <div class="fld"><label for="setAiGemini">Google Gemini API key</label><input type="password" id="setAiGemini" placeholder="AIza…" autocomplete="off" /></div>
-          <div class="fld"><label for="setAiModel">Default Agent mode</label>
-            <select id="setAiModel">
-              <option value="free">Free — everyday building, intelligent routing</option>
-              <option value="power">Power — stronger results for bigger tasks</option>
-              <option value="max">Max — most capable models, hardest problems</option>
-            </select>
-            <p class="hint">Modes mirror Replit's Free / Power / Max — here every mode is available at no cost.</p>
+          <h2>Bring Your Own AI (BYOK)</h2>
+          <p class="sub">Make elhir.com your personal Replit! Connect your own free or paid AI keys. elhir.com never charges you or caps your usage — keys are stored strictly in your browser (localStorage) and sent directly to the AI providers.</p>
+          <div class="fld"><label for="setAiGroq">Groq API Key <a href="https://console.groq.com/keys" target="_blank" rel="noopener" style="font-size:11.5px;margin-left:6px;color:var(--accent);">Get Free Key (Blazing Fast 500+ tok/s: Llama 3.3 70B, DeepSeek R1) ↗</a></label><input type="password" id="setAiGroq" placeholder="gsk_…" autocomplete="off" /></div>
+          <div class="fld"><label for="setAiGemini">Google AI Studio (Gemini) Key <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" style="font-size:11.5px;margin-left:6px;color:var(--accent);">Get Free Key (Gemini 2.5 Flash / Pro, 1M+ context) ↗</a></label><input type="password" id="setAiGemini" placeholder="AIza…" autocomplete="off" /></div>
+          <div class="fld"><label for="setAiNvidia">NVIDIA NIM Key <a href="https://build.nvidia.com/" target="_blank" rel="noopener" style="font-size:11.5px;margin-left:6px;color:var(--accent);">Get Free Credits / Key (Llama 3.3, DeepSeek R1) ↗</a></label><input type="password" id="setAiNvidia" placeholder="nvapi-…" autocomplete="off" /></div>
+          <div class="fld"><label for="setAiClaude">Anthropic Claude Key <a href="https://console.anthropic.com/" target="_blank" rel="noopener" style="font-size:11.5px;margin-left:6px;color:var(--accent);">Get Key (Claude 3.7 Sonnet & 3.5 Haiku) ↗</a></label><input type="password" id="setAiClaude" placeholder="sk-ant-…" autocomplete="off" /></div>
+          <div class="fld"><label for="setAiOpenai">OpenAI ChatGPT Key <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener" style="font-size:11.5px;margin-left:6px;color:var(--accent);">Get Key (GPT-4o, o3-mini) ↗</a></label><input type="password" id="setAiOpenai" placeholder="sk-…" autocomplete="off" /></div>
+          <div class="fld"><label for="setAiCustomUrl">Custom / OpenRouter / Ollama Endpoint</label>
+            <input type="text" id="setAiCustomUrl" placeholder="https://openrouter.ai/api/v1 or http://localhost:11434/v1" autocomplete="off" style="margin-bottom:6px" />
+            <input type="password" id="setAiCustomKey" placeholder="Custom API Key (optional for local Ollama)" autocomplete="off" style="margin-bottom:6px" />
+            <input type="text" id="setAiCustomModel" placeholder="Model name (e.g. deepseek/deepseek-r1)" autocomplete="off" />
           </div>
-          <div class="row" style="margin-top:12px"><button type="button" class="btn primary" id="btnSaveAi">Save AI settings</button><span class="hint" id="aiKeyStatus" style="margin:0"></span></div>
+          <div class="fld"><label for="setAiProvider">Default AI Engine</label>
+            <select id="setAiProvider">
+              <option value="auto">Auto — picks fastest available key (Groq → Gemini → NVIDIA → Claude → OpenAI)</option>
+              <option value="groq">⚡ Groq (Llama 3.3 70B & DeepSeek R1)</option>
+              <option value="gemini">✨ Google AI Studio (Gemini 2.5 Flash / Pro)</option>
+              <option value="nvidia">🟢 NVIDIA NIM (Llama 3.3 / DeepSeek R1)</option>
+              <option value="claude">🟣 Anthropic Claude (Claude 3.7 Sonnet)</option>
+              <option value="openai">⚪ OpenAI ChatGPT (GPT-4o / o3-mini)</option>
+              <option value="custom">🌐 Custom / OpenRouter / Ollama</option>
+              <option value="template">📦 Offline Templates (No key needed)</option>
+            </select>
+          </div>
+          <div class="row" style="margin-top:14px"><button type="button" class="btn primary" id="btnSaveAi">Save AI settings</button><span class="hint" id="aiKeyStatus" style="margin:0"></span></div>
         </section>
 
         <section class="card2" id="setAlwaysOn">
@@ -1710,6 +1722,16 @@ body.gated #authBack{display:none !important}
             <button type="button" data-ptog="plan" aria-pressed="false">Plan</button>
             <button type="button" data-ptog="build" aria-pressed="true">Build</button>
           </div>
+          <select id="quickAiProvider" class="sel" style="font-size:12px;padding:4px 8px;min-height:32px;border-radius:9px;max-width:145px;" title="Active AI Provider">
+            <option value="auto">⚡ Auto Engine</option>
+            <option value="groq">⚡ Groq</option>
+            <option value="gemini">✨ Gemini</option>
+            <option value="nvidia">🟢 NVIDIA</option>
+            <option value="claude">🟣 Claude</option>
+            <option value="openai">⚪ ChatGPT</option>
+            <option value="custom">🌐 Custom</option>
+            <option value="template">📦 Template</option>
+          </select>
           <button class="btn primary build-pill" id="btnGenerate" type="button">Build</button>
         </div>
         </div>
@@ -1969,6 +1991,12 @@ body.gated #authBack{display:none !important}
       <div class="showcase">
         <div class="frame-wrap" id="frameWrap">
           <div class="browser-bar"><span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="browser-url" id="browserUrl">my-website — live preview</span></div>
+          <div id="previewErrBanner" class="preview-err-banner" style="display:none;background:#FEF2F2;border-bottom:1px solid #FECACA;color:#991B1B;padding:8px 12px;font-size:12.5px;align-items:center;gap:8px;z-index:10;">
+            <span style="font-weight:700;">⚠️ Runtime issue:</span>
+            <span id="previewErrMsg" style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--mono);"></span>
+            <button type="button" class="btn small primary" id="btnAutoFixErr" style="font-size:11.5px;padding:3px 9px;min-height:26px;">⚡ Fix with Agent</button>
+            <button type="button" id="btnDismissErr" style="background:none;border:none;cursor:pointer;color:#991B1B;font-weight:700;">✕</button>
+          </div>
           <iframe id="preview" title="Live preview of your site"></iframe>
         </div>
         <div class="phone-wrap"><iframe id="previewPhone" title="Mobile preview of your site" tabindex="-1"></iframe><span class="phone-label">Mobile</span></div>
@@ -2238,11 +2266,15 @@ editor.addEventListener("keydown", e => {
 /* ================= PREVIEW ================= */
 const preview = $("#preview"), frameWrap = $("#frameWrap");
 function buildDoc(withEdit){
-  let html = files["index.html"];
-  const cssTag = '<style data-wb="css">\n' + files["styles.css"] + '\n</style>';
-  const jsEsc = files["script.js"].replace(/<\/script>/gi, "<\\/script>");
+  let html = files["index.html"] || "";
+  const errBridge = '<script data-wb="err-bridge">\n' +
+    'window.addEventListener("error", function(e){ try{ window.parent.postMessage({type:"WB_PREVIEW_ERR", msg:e.message, line:e.lineno, col:e.colno}, "*"); }catch(_){} });\n' +
+    'window.addEventListener("unhandledrejection", function(e){ try{ window.parent.postMessage({type:"WB_PREVIEW_ERR", msg:e.reason ? (e.reason.message || String(e.reason)) : "Unhandled promise rejection"}, "*"); }catch(_){} });\n' +
+    '<\/script>';
+  const cssTag = '<style data-wb="css">\n' + (files["styles.css"] || "") + '\n</style>';
+  const jsEsc = (files["script.js"] || "").replace(/<\/script>/gi, "<\\/script>");
   const jsTag = '<script data-wb="js">\n' + jsEsc + '\n<\/script>';
-  if(/<\/head>/i.test(html)) html = html.replace(/<\/head>/i, cssTag + "\n</head>"); else html = cssTag + html;
+  if(/<\/head>/i.test(html)) html = html.replace(/<\/head>/i, errBridge + "\n" + cssTag + "\n</head>"); else html = errBridge + "\n" + cssTag + html;
   if(/<\/body>/i.test(html)) html = html.replace(/<\/body>/i, jsTag + "\n</body>"); else html += jsTag;
   if(withEdit){
     const editCss = '<style data-wb="edit">.wb-hover{outline:1.5px dashed #65A30D !important;outline-offset:2px}.wb-selected{outline:2px solid #65A30D !important;outline-offset:2px}</style>';
@@ -2832,9 +2864,294 @@ ${mo ? `var io = new IntersectionObserver(function (es) { es.forEach(function (e
 document.querySelectorAll(".card, .proof, .hero").forEach(function (el) { el.classList.add("reveal"); io.observe(el); });` : ""}`;
   return { html, css, js };
 }
-$("#btnGenerate").addEventListener("click", () => {
+
+/* ================= UNIVERSAL BYOK AI ENGINE ================= */
+function getBYOKSettings(){
+  var def = { groq:"", gemini:"", nvidia:"", claude:"", openai:"", customUrl:"", customKey:"", customModel:"", provider:"auto" };
+  return Object.assign({}, def, readStore("wb_ai_keys", {}));
+}
+
+function resolveActiveAI(forcedProvider){
+  var keys = getBYOKSettings();
+  var prov = forcedProvider || ($("#quickAiProvider") ? $("#quickAiProvider").value : "auto");
+  if(!prov || prov === "auto") prov = keys.provider || "auto";
+
+  if(prov === "groq" && keys.groq) return { provider:"groq", key:keys.groq, name:"Groq (Llama 3.3 70B)" };
+  if(prov === "gemini" && keys.gemini) return { provider:"gemini", key:keys.gemini, name:"Google Gemini 2.5" };
+  if(prov === "nvidia" && keys.nvidia) return { provider:"nvidia", key:keys.nvidia, name:"NVIDIA NIM (Llama 3.3)" };
+  if(prov === "claude" && keys.claude) return { provider:"claude", key:keys.claude, name:"Anthropic Claude 3.7" };
+  if(prov === "openai" && keys.openai) return { provider:"openai", key:keys.openai, name:"OpenAI ChatGPT (GPT-4o)" };
+  if(prov === "custom" && (keys.customKey || keys.customUrl)) return { provider:"custom", key:keys.customKey, url:keys.customUrl, model:keys.customModel, name:"Custom Endpoint" };
+
+  // Auto fallback order: Groq (ultra fast) -> Gemini (large ctx) -> NVIDIA -> Claude -> OpenAI -> Custom
+  if(prov === "auto"){
+    if(keys.groq) return { provider:"groq", key:keys.groq, name:"Groq (Auto: Ultra-fast)" };
+    if(keys.gemini) return { provider:"gemini", key:keys.gemini, name:"Google Gemini (Auto)" };
+    if(keys.nvidia) return { provider:"nvidia", key:keys.nvidia, name:"NVIDIA NIM (Auto)" };
+    if(keys.claude) return { provider:"claude", key:keys.claude, name:"Anthropic Claude (Auto)" };
+    if(keys.openai) return { provider:"openai", key:keys.openai, name:"OpenAI ChatGPT (Auto)" };
+    if(keys.customKey || keys.customUrl) return { provider:"custom", key:keys.customKey, url:keys.customUrl, model:keys.customModel, name:"Custom Endpoint" };
+  }
+  return { provider:"template", name:"Offline Template Generator" };
+}
+
+async function callBYOK(messages, aiConfig){
+  var prov = aiConfig.provider;
+  if(prov === "groq"){
+    var res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + aiConfig.key },
+      body: JSON.stringify({
+        model: "llama-3.3-70b-versatile",
+        messages: messages,
+        temperature: 0.3,
+        max_tokens: 8000
+      })
+    });
+    if(!res.ok){ var err = await res.text(); throw new Error("Groq API error (" + res.status + "): " + err); }
+    var json = await res.json();
+    return json.choices[0].message.content;
+  }
+
+  if(prov === "gemini"){
+    try {
+      var res = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + aiConfig.key },
+        body: JSON.stringify({
+          model: "gemini-2.5-flash",
+          messages: messages,
+          temperature: 0.3
+        })
+      });
+      if(res.ok){
+        var json = await res.json();
+        return json.choices[0].message.content;
+      }
+    } catch(e){}
+    // Fallback to direct Gemini REST generateContent API
+    var restUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + encodeURIComponent(aiConfig.key);
+    var promptText = messages.map(function(m){ return m.role.toUpperCase() + ":\n" + m.content; }).join("\n\n");
+    var restRes = await fetch(restUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }] })
+    });
+    if(!restRes.ok){ var err = await restRes.text(); throw new Error("Gemini API error (" + restRes.status + "): " + err); }
+    var restJson = await restRes.json();
+    return restJson.candidates[0].content.parts[0].text;
+  }
+
+  if(prov === "nvidia"){
+    var res = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + aiConfig.key },
+      body: JSON.stringify({
+        model: "meta/llama-3.3-70b-instruct",
+        messages: messages,
+        temperature: 0.3,
+        max_tokens: 4096
+      })
+    });
+    if(!res.ok){ var err = await res.text(); throw new Error("NVIDIA NIM error (" + res.status + "): " + err); }
+    var json = await res.json();
+    return json.choices[0].message.content;
+  }
+
+  if(prov === "claude"){
+    var sysMsg = messages.find(function(m){ return m.role === "system"; });
+    var userMsgs = messages.filter(function(m){ return m.role !== "system"; }).map(function(m){ return { role: m.role, content: m.content }; });
+    var res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-api-key": aiConfig.key,
+        "anthropic-version": "2023-06-01",
+        "anthropic-dangerous-direct-browser-access": "true"
+      },
+      body: JSON.stringify({
+        model: "claude-3-7-sonnet-20250219",
+        max_tokens: 8000,
+        system: sysMsg ? sysMsg.content : "You are an autonomous web app builder agent.",
+        messages: userMsgs
+      })
+    });
+    if(!res.ok){ var err = await res.text(); throw new Error("Claude API error (" + res.status + "): " + err); }
+    var json = await res.json();
+    return json.content.map(function(c){ return c.text; }).join("\n");
+  }
+
+  if(prov === "openai"){
+    var res = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + aiConfig.key },
+      body: JSON.stringify({
+        model: "gpt-4o",
+        messages: messages,
+        temperature: 0.3
+      })
+    });
+    if(!res.ok){ var err = await res.text(); throw new Error("OpenAI API error (" + res.status + "): " + err); }
+    var json = await res.json();
+    return json.choices[0].message.content;
+  }
+
+  if(prov === "custom"){
+    var endpoint = (aiConfig.url || "https://openrouter.ai/api/v1").replace(/\/+$/, "") + "/chat/completions";
+    var headers = { "Content-Type": "application/json" };
+    if(aiConfig.key) headers["Authorization"] = "Bearer " + aiConfig.key;
+    var res = await fetch(endpoint, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify({
+        model: aiConfig.model || "deepseek/deepseek-r1",
+        messages: messages,
+        temperature: 0.3
+      })
+    });
+    if(!res.ok){ var err = await res.text(); throw new Error("Custom endpoint error (" + res.status + "): " + err); }
+    var json = await res.json();
+    return json.choices[0].message.content;
+  }
+
+  throw new Error("Unknown AI provider: " + prov);
+}
+
+function parseAIFileResponse(rawText){
+  var result = {};
+  var fileRegex = /<file\s+path=["']([^"']+)["']>([\s\S]*?)<\/file>/gi;
+  var match;
+  var found = false;
+  while((match = fileRegex.exec(rawText)) !== null){
+    var path = match[1].trim();
+    var content = match[2].trim();
+    result[path] = content;
+    found = true;
+  }
+  if(found) return result;
+
+  var mdRegex = /```(?:html|css|javascript|js)?\s*(?:\/\*|<!--|\/\/)?\s*(?:filepath:|file:)?\s*([a-zA-Z0-9_\-\.\/]+)?\s*(?:-->|\*\/)?\n([\s\S]*?)```/gi;
+  while((match = mdRegex.exec(rawText)) !== null){
+    var filename = match[1] ? match[1].trim() : "";
+    var code = match[2].trim();
+    if(!filename){
+      if(code.indexOf("<!doctype html") !== -1 || code.indexOf("<html") !== -1) filename = "index.html";
+      else if(code.indexOf("body{") !== -1 || code.indexOf(":root") !== -1 || code.indexOf("margin:") !== -1) filename = "styles.css";
+      else if(code.indexOf("document.") !== -1 || code.indexOf("window.") !== -1 || code.indexOf("addEventListener") !== -1) filename = "script.js";
+    }
+    if(filename) result[filename] = code;
+  }
+  return result;
+}
+
+async function runAgentBuild(userPrompt, kind, aiConfig){
+  var btn = $("#btnGenerate");
+  var origBtnText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin">●</span> Building with ' + esc(aiConfig.name) + '…';
+
+  try {
+    var skills = enabledSkills().map(function(s){ return s.name + ": " + s.rules.join("; "); }).join("\n");
+    var brief = (typeof generationPrefix === "function") ? generationPrefix() : "";
+    var currentFilesSummary = Object.keys(files).map(function(k){ return "File: " + k + " (" + files[k].length + " chars)"; }).join(", ");
+
+    var systemPrompt = "You are the Replit-class Autonomous Full-Stack Web App Builder agent on elhir.com.\n" +
+      "Your mission is to build a complete, highly-crafted, modern, responsive web application based on the user request.\n\n" +
+      "RULES:\n" +
+      "1. Generate complete, working code for index.html, styles.css, and script.js.\n" +
+      "2. In index.html, produce clean semantic HTML5. Feel free to load popular CDNs in the <head> if beneficial (e.g. Tailwind CSS CDN, FontAwesome, Lucide icons, Chart.js, Confetti).\n" +
+      "3. In styles.css, provide modern CSS with CSS variables, responsive mobile-friendly layouts, smooth hover transitions, and clean typography.\n" +
+      "4. In script.js, provide real, working interactive logic with DOM event listeners, modal/state management, and error handling.\n" +
+      "5. Always wrap each file's complete contents inside exact XML file tags:\n" +
+      "<file path=\"index.html\">\n... full HTML ...\n</file>\n" +
+      "<file path=\"styles.css\">\n... full CSS ...\n</file>\n" +
+      "<file path=\"script.js\">\n... full JS ...\n</file>\n\n" +
+      "Do not omit code or use placeholders. Output full, production-ready code.\n" +
+      (brief ? "\n" + brief : "") +
+      (skills ? "\nActive Design Skills:\n" + skills : "");
+
+    var userMessage = "App Type: " + kind + "\n" +
+      "Visual Style: " + $("#aiStyle").value + "\n" +
+      "Current project files: " + currentFilesSummary + "\n\n" +
+      "User Request:\n" + userPrompt;
+
+    var rawResponse = await callBYOK([
+      { role: "system", content: systemPrompt },
+      { role: "user", content: userMessage }
+    ], aiConfig);
+
+    var parsed = parseAIFileResponse(rawResponse);
+    if(parsed["index.html"] || parsed["styles.css"] || parsed["script.js"]){
+      pushHistory();
+      if(parsed["index.html"]) files["index.html"] = parsed["index.html"];
+      if(parsed["styles.css"]) files["styles.css"] = parsed["styles.css"];
+      if(parsed["script.js"]) files["script.js"] = parsed["script.js"];
+      Object.keys(parsed).forEach(function(k){ files[k] = parsed[k]; });
+
+      loadFileIntoEditor();
+      renderPreview();
+      setView("preview");
+      toast("Built successfully with " + aiConfig.name + "!");
+    } else {
+      console.warn("Could not parse file tags from AI response:", rawResponse);
+      toast("AI generated a response, but file tags were missing. Check console.");
+    }
+  } catch(err) {
+    console.error("AI Generation error:", err);
+    toast("AI error: " + (err.message || String(err)));
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = origBtnText;
+  }
+}
+
+// Runtime Preview Error Bridge for Self-Healing
+window.addEventListener("message", function(e){
+  if(e.data && e.data.type === "WB_PREVIEW_ERR"){
+    var banner = $("#previewErrBanner");
+    var msgEl = $("#previewErrMsg");
+    if(banner && msgEl){
+      msgEl.textContent = e.data.msg + (e.data.line ? " (line " + e.data.line + ")" : "");
+      banner.style.display = "flex";
+      banner._lastError = e.data;
+    }
+  }
+});
+
+var btnAutoFix = $("#btnAutoFixErr");
+if(btnAutoFix){
+  btnAutoFix.addEventListener("click", async function(){
+    var banner = $("#previewErrBanner");
+    var err = (banner && banner._lastError) || { msg: $("#previewErrMsg").textContent };
+    if(banner) banner.style.display = "none";
+    toast("Agent is fixing preview runtime error…");
+    var aiConfig = resolveActiveAI();
+    if(aiConfig.provider === "template"){
+      toast("Connect a free Groq or Gemini key in Settings for self-healing error fixes!");
+      return;
+    }
+    var fixPrompt = "Fix this runtime error in the application:\nError message: " + err.msg + (err.line ? " (line " + err.line + ")" : "") + "\nMake sure all event handlers, variables, and DOM references are safe and properly guarded.";
+    await runAgentBuild(fixPrompt, $("#aiKind").value, aiConfig);
+  });
+}
+var btnDismiss = $("#btnDismissErr");
+if(btnDismiss){
+  btnDismiss.addEventListener("click", function(){
+    var banner = $("#previewErrBanner");
+    if(banner) banner.style.display = "none";
+  });
+}
+
+$("#btnGenerate").addEventListener("click", async () => {
   const prompt = $("#aiPrompt").value.trim() || "A modern website for a small business";
   const kind = $("#aiKind").value;
+  const aiConfig = resolveActiveAI();
+
+  if(aiConfig.provider !== "template"){
+    await runAgentBuild(prompt, kind, aiConfig);
+    return;
+  }
+
   let name = "";
   const m = prompt.match(/for\s+(?:a\s+|an\s+|the\s+)?([A-Z][\w&' ]{2,28}?)(?:\s+(?:in|with|that|which|offering|selling)\b|[,.—-]|$)/);
   if(m) name = m[1].trim();
@@ -2859,7 +3176,7 @@ $("#btnGenerate").addEventListener("click", () => {
   $("#projectName").value = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "my-website";
   loadFileIntoEditor(); renderPreview();
   const en = enabledSkills();
-  toast("Built \"" + name + "\"" + (en.length ? " using " + en.length + " skill pack" + (en.length > 1 ? "s" : "") : ""));
+  toast("Built \"" + name + "\"" + (en.length ? " using " + en.length + " skill pack" + (en.length > 1 ? "s" : "") : "") + " (Add free Groq/Gemini key in Settings for AI)");
   setView("preview");
 });
 
@@ -4248,21 +4565,60 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
   applyEditor();
 
   /* ---------- Settings: AI keys & default mode ---------- */
-  var ai = readStore("wb_ai_keys", { openai:"", gemini:"", model:"free" });
-  $("#setAiOpenai").value = ai.openai || "";
-  $("#setAiGemini").value = ai.gemini || "";
-  $("#setAiModel").value = ai.model || "free";
+  var ai = getBYOKSettings();
+  if($("#setAiGroq")) $("#setAiGroq").value = ai.groq || "";
+  if($("#setAiGemini")) $("#setAiGemini").value = ai.gemini || "";
+  if($("#setAiNvidia")) $("#setAiNvidia").value = ai.nvidia || "";
+  if($("#setAiClaude")) $("#setAiClaude").value = ai.claude || "";
+  if($("#setAiOpenai")) $("#setAiOpenai").value = ai.openai || "";
+  if($("#setAiCustomUrl")) $("#setAiCustomUrl").value = ai.customUrl || "";
+  if($("#setAiCustomKey")) $("#setAiCustomKey").value = ai.customKey || "";
+  if($("#setAiCustomModel")) $("#setAiCustomModel").value = ai.customModel || "";
+  if($("#setAiProvider")) $("#setAiProvider").value = ai.provider || "auto";
+  if($("#quickAiProvider")) $("#quickAiProvider").value = ai.provider || "auto";
+
   function aiStatus(){
-    var n = (ai.openai ? 1 : 0) + (ai.gemini ? 1 : 0);
-    $("#aiKeyStatus").textContent = n ? n + " key" + (n > 1 ? "s" : "") + " saved in this browser" : "No keys saved";
+    var list = [];
+    if(ai.groq) list.push("Groq");
+    if(ai.gemini) list.push("Gemini");
+    if(ai.nvidia) list.push("NVIDIA NIM");
+    if(ai.claude) list.push("Claude");
+    if(ai.openai) list.push("ChatGPT");
+    if(ai.customKey || ai.customUrl) list.push("Custom");
+    var n = list.length;
+    var el = $("#aiKeyStatus");
+    if(el){
+      el.textContent = n ? n + " provider" + (n > 1 ? "s" : "") + " connected (" + list.join(", ") + ")" : "No keys saved (using offline templates)";
+    }
   }
   aiStatus();
+
   $("#btnSaveAi").addEventListener("click", function(){
-    ai = { openai: $("#setAiOpenai").value.trim(), gemini: $("#setAiGemini").value.trim(), model: $("#setAiModel").value };
+    ai = {
+      groq: $("#setAiGroq") ? $("#setAiGroq").value.trim() : "",
+      gemini: $("#setAiGemini") ? $("#setAiGemini").value.trim() : "",
+      nvidia: $("#setAiNvidia") ? $("#setAiNvidia").value.trim() : "",
+      claude: $("#setAiClaude") ? $("#setAiClaude").value.trim() : "",
+      openai: $("#setAiOpenai") ? $("#setAiOpenai").value.trim() : "",
+      customUrl: $("#setAiCustomUrl") ? $("#setAiCustomUrl").value.trim() : "",
+      customKey: $("#setAiCustomKey") ? $("#setAiCustomKey").value.trim() : "",
+      customModel: $("#setAiCustomModel") ? $("#setAiCustomModel").value.trim() : "",
+      provider: $("#setAiProvider") ? $("#setAiProvider").value : "auto"
+    };
     store("wb_ai_keys", ai);
+    if($("#quickAiProvider")) $("#quickAiProvider").value = ai.provider;
     aiStatus();
-    toast("AI settings saved");
+    toast("AI settings saved — ready to build with " + ai.provider.toUpperCase());
   });
+
+  if($("#quickAiProvider")){
+    $("#quickAiProvider").addEventListener("change", function(){
+      ai.provider = this.value;
+      store("wb_ai_keys", ai);
+      if($("#setAiProvider")) $("#setAiProvider").value = this.value;
+      toast("Engine switched to " + this.options[this.selectedIndex].text);
+    });
+  }
 
   /* ---------- Settings: publish token summary ---------- */
   function renderTokenSummary(){

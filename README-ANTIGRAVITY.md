@@ -34,7 +34,7 @@ Open it in a browser (or serve the folder) and it runs.
   Supabase dashboard (masked).
 - Publish: Vercel / Netlify / Cloudflare Pages / GitHub Pages / Render from inside the
   builder — each needs the user's own token pasted once in Settings (browser-only storage).
-- AI generation: free Gemini API key pasted once in Settings (browser-only storage).
+- AI generation: Universal Bring Your Own Key (BYOK) supporting Groq (Llama 3.3 70B & DeepSeek R1), Google AI Studio (Gemini 2.5 Flash/Pro), NVIDIA NIM (Llama 3.3), Anthropic Claude (Claude 3.7 Sonnet), OpenAI ChatGPT (GPT-4o), and Custom / OpenRouter / Ollama. Keys are stored strictly in client browser storage (`localStorage`) with $0 server compute bills. If no key is set, it gracefully defaults to offline templates.
 
 ## What is complete (live on elhir.com)
 
@@ -44,7 +44,9 @@ border, image swap), multi-artifact projects (website + slide decks + data views
 data tab (tables + uploads to the `project-assets` bucket), SEO helper (scores real
 index.html, one-click fixes, sitemap.xml + robots.txt in every ZIP/publish),
 self-check on every preview refresh, feedback widget + inbox (posts to the `feedback`
-table), mandatory login, Gen Z redesign, Supabase wiring (auth + sync + checkpoints).
+table), mandatory login, Gen Z redesign, Supabase wiring (auth + sync + checkpoints),
+Universal BYOK AI Engine (Groq, Gemini, NVIDIA NIM, Claude, OpenAI, Custom),
+quick AI model switcher pill in prompt composer, and Preview Self-Healing Error Bridge with 1-click Agent auto-fix.
 
 ## What is NOT done yet
 
