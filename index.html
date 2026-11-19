@@ -109,18 +109,18 @@
   <button type="button" class="integ-btn" id="pubPopAdvanced" style="display:block;margin:8px auto 0">Deploy to Vercel, Netlify, GitHub &amp; more →</button>
 </div>
 
-<!-- ============ HOME SCREEN (LOVABLE DASHBOARD FLAGSHIP) ============ -->
-<div id="homeScreen" class="lovable-dashboard">
+<!-- ============ HOME SCREEN (ELHIR AUTONOMOUS STUDIO) ============ -->
+<div id="homeScreen" class="lovable-dashboard elhir-dashboard">
   <!-- Left Sidebar -->
-  <aside class="lovable-sidebar" id="homeSidebar">
-    <!-- Brand / Workspace Switcher -->
+  <aside class="lovable-sidebar elhir-sidebar" id="homeSidebar">
+    <!-- Elhir Brand & Workspace Switcher -->
     <div class="lovable-top-row">
-      <div class="lovable-logo-flame">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="url(#lovFlame)"/><defs><linearGradient id="lovFlame" x1="2" y1="3" x2="22" y2="21.35"><stop stop-color="#F43F5E"/><stop offset="0.5" stop-color="#EC4899"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs></svg>
+      <div class="lovable-logo-flame elhir-logo-badge" title="elhir.com Studio">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="6" fill="#111827" stroke="url(#elhirGrad)" stroke-width="1.6"/><path d="M7 8l4 4-4 4" stroke="#38BDF8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 16h4" stroke="#818CF8" stroke-width="2.2" stroke-linecap="round"/><defs><linearGradient id="elhirGrad" x1="2" y1="2" x2="22" y2="22"><stop stop-color="#38BDF8"/><stop offset="0.5" stop-color="#818CF8"/><stop offset="1" stop-color="#C084FC"/></linearGradient></defs></svg>
       </div>
-      <div class="lovable-workspace-btn" id="lovableWorkspaceBtn" title="Switch workspace">
-        <span class="lovable-ws-avatar">R</span>
-        <span class="lovable-ws-name">ragg's Lovable</span>
+      <div class="lovable-workspace-btn elhir-ws-btn" id="lovableWorkspaceBtn" title="Switch workspace">
+        <span class="lovable-ws-avatar" style="background:linear-gradient(135deg, #0284C7, #6366F1);">E</span>
+        <span class="lovable-ws-name">Sai's Studio</span>
         <span class="lovable-ws-caret">▾</span>
       </div>
     </div>
@@ -128,8 +128,8 @@
     <!-- Navigation List -->
     <nav class="lovable-nav">
       <button type="button" class="lovable-nav-btn active" id="btnNewProject" title="Create a new project">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        <span>New</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        <span>New App</span>
       </button>
       <button type="button" class="lovable-nav-btn" id="btnSidebarSearch">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -140,8 +140,12 @@
         <span>Projects</span>
       </button>
       <button type="button" class="lovable-nav-btn" id="btnSidebarConnectors">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-        <span>Connectors</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span>BYOK & Models</span>
+      </button>
+      <button type="button" class="lovable-nav-btn" id="btnSidebarSkills">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+        <span>Skills &amp; Plugins</span>
       </button>
       <button type="button" class="lovable-nav-btn" id="btnSidebarAutomations">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -151,73 +155,75 @@
 
     <!-- Sidebar Projects List -->
     <div class="lovable-sidebar-sec">
-      <div class="lovable-sec-label">Projects</div>
+      <div class="lovable-sec-label">Recent Projects</div>
       <div class="lovable-proj-list" id="sidebarProjList"></div>
     </div>
 
     <div style="flex:1"></div>
 
-    <!-- Upgrade & Share Cards -->
+    <!-- Elhir Studio Info Cards -->
     <div class="lovable-sidebar-cards">
       <div class="lovable-promo-card" id="btnPromoUpgrade">
         <div class="lovable-promo-text">
-          <b>Upgrade to Pro</b>
-          <p>Unlock more features</p>
+          <b>Elhir Pro Studio</b>
+          <p>Unlimited BYOK &amp; Local Ollama</p>
         </div>
         <div class="lovable-promo-icon purple">⚡</div>
       </div>
       <div class="lovable-promo-card" id="btnPromoShare">
         <div class="lovable-promo-text">
-          <b>Share Lovable</b>
-          <p>Up to 400 credits per referral</p>
+          <b>Deploy Anywhere</b>
+          <p>1-Click Vercel, Netlify &amp; Cloudflare</p>
         </div>
         <div class="lovable-promo-icon gradient">✦</div>
       </div>
       <div class="lovable-user-profile" id="homeUserPill">
-        <div class="lovable-user-avatar">
+        <div class="lovable-user-avatar" style="background:#0284C7;">
           <span>S</span>
-          <span class="lovable-dot-badge">1</span>
+          <span class="lovable-dot-badge" style="background:#10B981;box-shadow:0 0 6px #10B981;"></span>
         </div>
         <div class="lovable-user-info">
           <span class="lovable-user-name">Sai</span>
-          <span class="lovable-user-tag">Pro Plan</span>
+          <span class="lovable-user-tag">Creator · Pro Plan</span>
         </div>
       </div>
     </div>
   </aside>
 
-  <!-- Main Aurora Canvas Area -->
+  <!-- Main Radiant Canvas Area -->
   <main class="lovable-main-area">
-    <div class="lovable-aurora-card">
+    <div class="lovable-aurora-card elhir-aurora-card">
       <!-- Top AI Banner Pill -->
-      <div class="lovable-ai-banner" id="bannerAiApps" title="Add AI features to your apps">
+      <div class="lovable-ai-banner elhir-ai-banner" id="bannerAiApps" title="Elhir Autonomous Multi-Model Studio">
         <span class="lovable-banner-icons">✦ ⚡ 🌐</span>
-        <span>Add AI to your apps →</span>
+        <span>Elhir Autonomous Studio · Universal BYOK →</span>
       </div>
 
       <!-- Main Headline -->
-      <h1 class="lovable-hero-title">Got an idea, Sai?</h1>
+      <h1 class="lovable-hero-title elhir-hero-title">What will you build today, Sai?</h1>
+      <p class="elhir-hero-sub">Turn ideas into full-stack web applications, landing pages, and interactive tools at the speed of thought.</p>
 
       <!-- Prompt Input Box -->
-      <div class="lovable-prompt-card">
-        <textarea class="prompt lovable-textarea" id="homePrompt" rows="2" placeholder="Ask Lovable to build a landing page for my..."></textarea>
+      <div class="lovable-prompt-card elhir-prompt-card">
+        <textarea class="prompt lovable-textarea" id="homePrompt" rows="2" placeholder="Describe what you want to build (e.g., A real-time SaaS analytics dashboard with interactive charts and dark mode)..."></textarea>
         <div class="lovable-prompt-foot">
-          <button type="button" class="lovable-foot-btn" id="btnHomeAttach" title="Attach file or mockup" aria-label="Attach">
+          <button type="button" class="lovable-foot-btn" id="btnHomeAttach" title="Attach file, design, or mockup" aria-label="Attach">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
           </button>
           <div style="flex:1"></div>
           <div class="lovable-foot-right">
             <select class="sel lovable-mode-sel" id="homeAiModel" aria-label="AI Engine">
-              <option value="auto">Build ▾</option>
-              <option value="groq">⚡ Groq</option>
-              <option value="gemini">✨ Gemini</option>
-              <option value="claude">🟣 Claude</option>
-              <option value="openai">⚪ ChatGPT</option>
+              <option value="auto">⚡ Auto Engine</option>
+              <option value="groq">⚡ Groq Lightning</option>
+              <option value="gemini">✨ Gemini 1.5 Pro</option>
+              <option value="claude">🟣 Claude 3.5 Sonnet</option>
+              <option value="openai">⚪ ChatGPT-4o</option>
+              <option value="custom">🌐 Local Ollama</option>
             </select>
             <button type="button" class="lovable-foot-icon" id="btnHomeMic" title="Voice prompt" aria-label="Voice">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
             </button>
-            <button class="lovable-send-btn" id="btnHomeBuild" type="button" title="Build project" aria-label="Build">
+            <button class="lovable-send-btn elhir-send-btn" id="btnHomeBuild" type="button" title="Build and launch project" aria-label="Build">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
             </button>
           </div>
@@ -225,15 +231,15 @@
       </div>
 
       <!-- Bottom Shelf Section: Projects & Templates -->
-      <section class="lovable-shelf">
+      <section class="lovable-shelf elhir-shelf">
         <div class="lovable-shelf-head">
           <div class="lovable-search-wrap">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <input type="text" id="homeSearchInput" placeholder="Search" aria-label="Search projects" />
+            <input type="text" id="homeSearchInput" placeholder="Search projects..." aria-label="Search projects" />
           </div>
           <div class="lovable-shelf-tabs" role="tablist">
-            <button type="button" class="lovable-tab-pill active" id="tabRecentlyViewed" role="tab" aria-selected="true">Recently viewed</button>
-            <button type="button" class="lovable-tab-pill" id="tabLovableTemplates" role="tab" aria-selected="false">Lovable templates</button>
+            <button type="button" class="lovable-tab-pill active" id="tabRecentlyViewed" role="tab" aria-selected="true">Recent projects</button>
+            <button type="button" class="lovable-tab-pill" id="tabLovableTemplates" role="tab" aria-selected="false">Curated templates</button>
           </div>
           <div style="flex:1"></div>
           <a href="#" class="lovable-browse-link" id="linkBrowseAll">Browse all →</a>
@@ -252,7 +258,6 @@
     </div>
   </main>
 </div>
-
 
 <!-- ============ PROFILE SCREEN ============ -->
 <div id="profileScreen">
@@ -2915,18 +2920,18 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
     {
       id: "p-career-compass",
       name: "Career Compass",
-      desc: "Guiding 10th Graders to Their Future Path",
+      desc: "Interactive Aptitude & Career Navigator",
       published: true,
       updatedAt: Date.now() - 4 * 3600 * 1000,
       timeLabel: "Viewed 4 hours ago",
-      iconColor: "#3B82F6",
-      bgGradient: "linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%)",
-      previewHtml: "<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,sans-serif;color:#1E3A8A;text-align:center;padding:24px;background:#F8FAFC;'><div style='font-size:12px;font-weight:700;letter-spacing:1.5px;color:#3B82F6;margin-bottom:8px;'>✦ PATHFINDER</div><h2 style='font-size:19px;font-weight:700;color:#0F172A;margin:0 0 10px;line-height:1.25;'>Guiding 10th Graders to Their Future Path</h2><div style='display:inline-flex;gap:12px;margin-top:4px;'><span style='font-size:11px;padding:3px 10px;border-radius:99px;background:#E0E7FF;color:#3730A3;font-weight:600;'>Interactive Quiz</span><span style='font-size:11px;padding:3px 10px;border-radius:99px;background:#E0F2FE;color:#0369A1;font-weight:600;'>Career Roadmap</span></div></div>"
+      iconColor: "#38BDF8",
+      bgGradient: "linear-gradient(135deg, #0C1A30 0%, #030712 100%)",
+      previewHtml: "<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,sans-serif;color:#F8FAFC;text-align:center;padding:24px;background:radial-gradient(circle at 50% 20%, #1E3A8A 0%, #030712 80%);'><div style='font-size:12px;font-weight:700;letter-spacing:1.5px;color:#38BDF8;margin-bottom:8px;'>✦ PATHFINDER · ELHIR</div><h2 style='font-size:19px;font-weight:700;color:#F1F5F9;margin:0 0 10px;line-height:1.25;'>Guiding 10th Graders to Their Future Path</h2><div style='display:inline-flex;gap:12px;margin-top:4px;'><span style='font-size:11px;padding:3px 10px;border-radius:99px;background:rgba(56,189,248,0.18);border:1px solid rgba(56,189,248,0.3);color:#7DD3FC;font-weight:600;'>Interactive Quiz</span><span style='font-size:11px;padding:3px 10px;border-radius:99px;background:rgba(129,140,248,0.18);border:1px solid rgba(129,140,248,0.3);color:#A5B4FC;font-weight:600;'>Career Roadmap</span></div></div>"
     },
     {
       id: "p-love-story-reel",
       name: "Your Love Story Reel",
-      desc: "Before You Decide...",
+      desc: "Cinematic Anniversary Video Timeline",
       published: false,
       updatedAt: Date.now() - 32 * 86400 * 1000,
       timeLabel: "Viewed Oct 18, 2026",
@@ -2937,7 +2942,7 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
     {
       id: "p-home-harmony",
       name: "Home Harmony",
-      desc: "Smart Home IoT Control",
+      desc: "Smart Climate & Ambience Hub",
       published: true,
       updatedAt: Date.now() - 110 * 86400 * 1000,
       timeLabel: "Viewed Jul 30, 2026",
@@ -2948,18 +2953,18 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
     {
       id: "p-contribution-canvas",
       name: "Contribution Canvas",
-      desc: "Your autonomous chief of staff",
+      desc: "Autonomous Chief of Staff Workspace",
       published: false,
       updatedAt: Date.now() - 145 * 86400 * 1000,
       timeLabel: "Viewed Jun 25, 2026",
       iconColor: "#06B6D4",
       bgGradient: "radial-gradient(circle at 75% 50%, #1E1B4B 0%, #020617 80%)",
-      previewHtml: "<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,sans-serif;color:#F8FAFC;text-align:center;padding:24px;background:radial-gradient(circle at 80% 45%, #1E1B4B 0%, #030712 75%);'><h2 style='font-size:17px;font-weight:600;color:#F1F5F9;margin:0 0 10px;line-height:1.3;'>Your autonomous<br/>chief of staff.</h2><div style='display:inline-block;width:24px;height:24px;border-radius:50%;background:#38BDF8;box-shadow:0 0 20px #38BDF8;margin:4px 0 8px;'></div><div style='font-size:11px;color:#94A3B8;'>Win Vibe25Hp · Aura Demo</div></div>"
+      previewHtml: "<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,sans-serif;color:#F8FAFC;text-align:center;padding:24px;background:radial-gradient(circle at 80% 45%, #1E1B4B 0%, #030712 75%);'><h2 style='font-size:17px;font-weight:600;color:#F1F5F9;margin:0 0 10px;line-height:1.3;'>Your autonomous<br/>chief of staff.</h2><div style='display:inline-block;width:24px;height:24px;border-radius:50%;background:#38BDF8;box-shadow:0 0 20px #38BDF8;margin:4px 0 8px;'></div><div style='font-size:11px;color:#94A3B8;'>Elhir Vibe · Aura Studio</div></div>"
     },
     {
       id: "p-my-hearts-story",
       name: "My Heart's Story",
-      desc: "Visual story novel",
+      desc: "Evocative Visual Romantic Narrative",
       published: false,
       updatedAt: Date.now() - 154 * 86400 * 1000,
       timeLabel: "Viewed Jun 16, 2026",
@@ -2970,13 +2975,13 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
     {
       id: "p-connect-sphere",
       name: "Connect Sphere",
-      desc: "Welcome to ConnectSphere",
+      desc: "Universal Team Workspace & Portal",
       published: true,
       updatedAt: Date.now() - 213 * 86400 * 1000,
       timeLabel: "Viewed Apr 18, 2026",
       iconColor: "#8B5CF6",
-      bgGradient: "linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%)",
-      previewHtml: "<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,sans-serif;color:#0F172A;text-align:center;padding:24px;background:#FFFFFF;'><div style='display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:#7C3AED;color:#FFF;font-size:18px;margin-bottom:8px;'>🌐</div><h2 style='font-size:17px;font-weight:600;margin:0 0 6px;'>Welcome to ConnectSphere</h2><div style='font-size:11px;color:#64748B;'>Sign in to access your universal workspace</div></div>"
+      bgGradient: "linear-gradient(135deg, #1E1B4B 0%, #0F172A 100%)",
+      previewHtml: "<div style='display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;font-family:system-ui,-apple-system,sans-serif;color:#F8FAFC;text-align:center;padding:24px;background:radial-gradient(circle at 50% 30%, #312E81 0%, #0F172A 80%);'><div style='display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:#6366F1;color:#FFF;font-size:18px;margin-bottom:8px;'>🌐</div><h2 style='font-size:17px;font-weight:600;margin:0 0 6px;'>Welcome to ConnectSphere</h2><div style='font-size:11px;color:#94A3B8;'>Sign in to access your universal workspace</div></div>"
     }
   ];
 
@@ -3009,7 +3014,6 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
       }
     });
 
-    // Add user custom projects afterwards
     projects.forEach(function(p){
       var isSc = SHOWCASE_PROJECTS.some(function(sc){ return sc.name === p.name; });
       if(!isSc && !newProjects.some(function(np){ return np.id === p.id; })){
@@ -3024,13 +3028,13 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
   function renderHome(){
     seedShowcaseProjectsIfNeeded();
 
-    // Render Sidebar Projects List (Matching screenshot)
+    // Render Sidebar Projects List
     var sidebarList = document.getElementById("sidebarProjList");
     if(sidebarList){
       var sidebarItems = [
         { name: "Home Harmony", icon: "H", color: "#EAB308" },
         { name: "Contribution Canvas", icon: "C", color: "#06B6D4" },
-        { name: "Career Compass", icon: "C", color: "#3B82F6" },
+        { name: "Career Compass", icon: "C", color: "#38BDF8" },
         { name: "My Heart's Story", icon: "M", color: "#10B981" },
         { name: "Your Love Story Reel", icon: "Y", color: "#EC4899" }
       ];
@@ -3057,7 +3061,7 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
             thumbContent = '<iframe sandbox="allow-scripts" tabindex="-1" loading="lazy" title="Preview of ' + esc(p.name) + '" srcdoc="' + esc(docFor(p.files)) + '"></iframe>';
           }
 
-          return '<article class="lovable-card proj-card" data-proj="' + p.id + '" data-open="' + p.id + '"><div class="lovable-card-thumb proj-thumb">' + thumbContent + (isPub ? '<span class="lovable-card-badge">Published</span>' : '') + '</div><div class="lovable-card-foot"><div class="lovable-card-avatar">P</div><div class="lovable-card-info"><div class="lovable-card-title proj-name" title="' + esc(p.name) + '">' + esc(p.name) + '</div><div class="lovable-card-sub">' + esc(timeText) + '</div></div></div></article>';
+          return '<article class="lovable-card proj-card" data-proj="' + p.id + '" data-open="' + p.id + '"><div class="lovable-card-thumb proj-thumb">' + thumbContent + (isPub ? '<span class="lovable-card-badge">● Published</span>' : '') + '</div><div class="lovable-card-foot"><div class="lovable-card-avatar" style="background:linear-gradient(135deg, #0284C7, #6366F1);">E</div><div class="lovable-card-info"><div class="lovable-card-title proj-name" title="' + esc(p.name) + '">' + esc(p.name) + '</div><div class="lovable-card-sub">' + esc(timeText) + '</div></div></div></article>';
         }).join("");
       }
     }
@@ -3173,25 +3177,31 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
     });
   }
 
-  // Sidebar extra buttons
+  // Sidebar buttons
   var btnSidebarSearch = document.getElementById("btnSidebarSearch");
   if(btnSidebarSearch && searchInp) btnSidebarSearch.addEventListener("click", function(){ searchInp.focus(); });
   var btnSidebarProjects = document.getElementById("btnSidebarProjects");
   if(btnSidebarProjects && tabRec) btnSidebarProjects.addEventListener("click", function(){ tabRec.click(); });
   var btnSidebarConnectors = document.getElementById("btnSidebarConnectors");
   if(btnSidebarConnectors) btnSidebarConnectors.addEventListener("click", function(){
+    if(window.__go) window.__go("settings");
+    else showScreen("settings");
+  });
+  var btnSidebarSkills = document.getElementById("btnSidebarSkills");
+  if(btnSidebarSkills) btnSidebarSkills.addEventListener("click", function(){
     openProject(currentProjectId);
-    showTab("plugins");
+    showTab("skills");
   });
   var btnSidebarAutomations = document.getElementById("btnSidebarAutomations");
   if(btnSidebarAutomations) btnSidebarAutomations.addEventListener("click", function(){
     toast("Automations engine: running in background");
   });
   var btnPromoUp = document.getElementById("btnPromoUpgrade");
-  if(btnPromoUp) btnPromoUp.addEventListener("click", function(){ toast("You have full Pro Studio access included!"); });
+  if(btnPromoUp) btnPromoUp.addEventListener("click", function(){ toast("Elhir Pro Studio active — full BYOK access enabled"); });
   var btnPromoSh = document.getElementById("btnPromoShare");
   if(btnPromoSh) btnPromoSh.addEventListener("click", function(){
-    if(navigator.clipboard) { navigator.clipboard.writeText(window.location.origin); toast("Share link copied to clipboard!"); }
+    openProject(currentProjectId);
+    showTab("publish");
   });
   var homeUserPill = document.getElementById("homeUserPill");
   if(homeUserPill) homeUserPill.addEventListener("click", function(){
@@ -3200,9 +3210,8 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
   });
   var bannerAi = document.getElementById("bannerAiApps");
   if(bannerAi) bannerAi.addEventListener("click", function(){
-    openProject(currentProjectId);
-    showTab("skills");
-    toast("Configure AI skills & LLM providers");
+    if(window.__go) window.__go("settings");
+    else showScreen("settings");
   });
 
   renderHome();

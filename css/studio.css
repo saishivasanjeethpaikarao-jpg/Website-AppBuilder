@@ -4546,12 +4546,12 @@ body[data-screen="home"] #homeScreen {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   padding: 6px 14px;
-  width: 155px;
+  width: 175px;
   transition: border-color 0.15s, width 0.2s;
 }
 .lovable-search-wrap:focus-within {
   border-color: rgba(255, 255, 255, 0.25);
-  width: 180px;
+  width: 220px;
 }
 .lovable-search-wrap input {
   background: transparent;
@@ -4722,4 +4722,54 @@ body[data-screen="home"] #homeScreen {
 }
 .lovable-top-row .lovable-workspace-btn {
   flex: 1;
+}
+
+
+/* --- Elhir Brand Styling Overrides --- */
+.elhir-logo-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+.elhir-logo-badge:hover {
+  transform: scale(1.05);
+}
+.elhir-ws-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+}
+.elhir-ws-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+.elhir-hero-title {
+  font-size: 38px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  margin: 0 0 10px 0;
+  text-align: center;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+.elhir-hero-sub {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 26px 0;
+  text-align: center;
+  max-width: 580px;
+  line-height: 1.5;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
+.elhir-prompt-card {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+.elhir-ai-banner {
+  background: rgba(15, 23, 42, 0.75);
+  border-color: rgba(56, 189, 248, 0.28);
+  color: #E2E8F0;
+}
+.elhir-ai-banner:hover {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(56, 189, 248, 0.5);
 }
