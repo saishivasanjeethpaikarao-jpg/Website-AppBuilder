@@ -3718,3 +3718,244 @@ body[data-screen="workspace"] #appNav {
   background: rgba(139, 92, 246, 0.2);
   color: #FFFFFF;
 }
+
+
+/* ==========================================================================
+   FLAGSHIP LOVABLE & REPLIT QUALITY STUDIO STYLING
+   ========================================================================== */
+
+/* 1. Chat Tab Feed Focus - Hide Legacy Forms and Clutter in Chat Tab */
+#page-build > .flabel,
+#page-build > #activeSkillChips,
+#page-build > details.box,
+#page-build > #historyBox,
+#page-build > #tplGrid,
+#page-build > .hint {
+  display: none !important;
+}
+
+/* 2. Chat Feed & Conversation Stream */
+.chat-feed {
+  display: flex !important;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  flex: 1;
+}
+
+/* 3. Lovable-Standard Assistant Message Card */
+.update-card {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  background: rgba(15, 20, 32, 0.8) !important;
+  backdrop-filter: blur(16px) !important;
+  padding: 16px 18px !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5) !important;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.update-card:hover {
+  border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+.update-card .uc-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.uc-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #6366F1, #8B5CF6);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+.update-card .uc-title {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: #F8FAFC;
+  flex: 1;
+  letter-spacing: -0.01em;
+}
+
+.uc-state {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 2.5px 8px;
+  border-radius: 9999px;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #C7D2FE;
+}
+
+.uc-state.live {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+  color: #6EE7B7 !important;
+}
+
+.update-card .uc-body {
+  display: block !important;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #94A3B8;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.uc-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.uc-actions button {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: #94A3B8 !important;
+  border-radius: 9999px !important;
+  padding: 4px 10px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: all 0.15s ease !important;
+}
+
+.uc-actions button:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+}
+
+.uc-actions button[aria-pressed="true"] {
+  background: rgba(99, 102, 241, 0.25) !important;
+  border-color: rgba(99, 102, 241, 0.5) !important;
+  color: #FFFFFF !important;
+}
+
+.uc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.uc-chips button {
+  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  background: rgba(99, 102, 241, 0.06) !important;
+  color: #C7D2FE !important;
+  border-radius: 9999px !important;
+  padding: 4px 11px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  cursor: pointer;
+  transition: all 0.15s ease !important;
+}
+
+.uc-chips button:hover {
+  background: rgba(99, 102, 241, 0.2) !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+}
+
+/* 4. Sleek Selection Chip */
+.ws-selchip {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  margin-bottom: 8px;
+  background: rgba(99, 102, 241, 0.15) !important;
+  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+  border-radius: 9999px !important;
+  font-size: 11px !important;
+  color: #C7D2FE !important;
+}
+
+/* 5. Luxury Canvas & Browser Mockup */
+.prev-stage {
+  background: #07090E !important;
+  padding: 16px !important;
+}
+
+.frame-wrap {
+  background: #090D16 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75) !important;
+}
+
+.browser-bar {
+  background: #101420 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 9px 14px !important;
+}
+
+.browser-url {
+  font-family: var(--studio-mono) !important;
+  font-size: 11px !important;
+  color: #94A3B8 !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  padding: 3px 12px !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* 6. Floating Canvas Toolbar */
+.ftoolbar {
+  position: absolute !important;
+  bottom: 24px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: rgba(13, 17, 28, 0.88) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6) !important;
+  padding: 4px 8px !important;
+  z-index: 30 !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.ftoolbar-main button {
+  color: #94A3B8 !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  padding: 5px 12px !important;
+  border-radius: 9999px !important;
+  transition: all 0.15s ease !important;
+}
+
+.ftoolbar-main button:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #F8FAFC !important;
+}
+
+/* 7. Minimal Self-Check Bar */
+.selfcheck {
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: rgba(13, 17, 28, 0.8) !important;
+}
+
+.sc-head {
+  padding: 6px 14px !important;
+}
+
+.sc-title {
+  font-size: 11.5px !important;
+  color: #94A3B8 !important;
+}
