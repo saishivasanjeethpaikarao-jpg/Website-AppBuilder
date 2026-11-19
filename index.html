@@ -1232,10 +1232,11 @@ body.gated #authBack{display:none !important}
   <div class="brand" id="brandHome" title="Back to projects"><svg class="logo-mark" viewBox="0 0 44 44" aria-hidden="true" focusable="false"><rect x="2" y="2" width="40" height="40" rx="11" fill="#141419"/><rect x="11" y="10" width="10" height="10" rx="2.5" fill="#C6F135"/><rect x="23" y="10" width="10" height="10" rx="2.5" fill="#ffffff"/><rect x="11" y="22" width="10" height="10" rx="2.5" fill="#FF6B9D"/><rect x="23" y="22" width="10" height="10" rx="2.5" fill="#C6F135"/></svg><span class="brand-word">Builder<em>build real sites &amp; apps</em></span></div>
   <input id="projectName" value="my-website" aria-label="Project name" spellcheck="false" />
   <span class="status-dot" id="saveState">Preview live</span>
+  <span class="chip" id="topAiBadge" style="cursor:pointer;font-size:11.5px;padding:4px 10px;font-weight:700;display:inline-flex;align-items:center;gap:5px;border-color:var(--accent);color:var(--ink);" title="Active AI engine — click to change in Settings">⚡ Auto Engine</span>
   <div class="ws-seg" role="tablist" aria-label="Workspace view">
-    <button type="button" data-ws="preview" role="tab" aria-selected="true">Preview</button>
-    <button type="button" data-ws="files" role="tab" aria-selected="false">Files</button>
-    <button type="button" data-ws="code" role="tab" aria-selected="false">Code</button>
+    <button type="button" data-ws="preview" role="tab" aria-selected="true" title="Studio: AI Builder Left, Interactive Preview Right">✦ Studio</button>
+    <button type="button" data-ws="files" role="tab" aria-selected="false" title="Virtual File Tree">📁 Files</button>
+    <button type="button" data-ws="code" role="tab" aria-selected="false" title="Monaco Code Editor">&lt;/&gt; Code</button>
     <button type="button" data-ws="more" role="tab" aria-selected="false" id="wsMoreBtn" aria-haspopup="menu">More ▾</button>
   </div>
   <div class="more-menu" id="moreMenu" hidden role="menu">
@@ -1736,6 +1737,14 @@ body.gated #authBack{display:none !important}
         </div>
         </div>
         </div>
+
+        <div class="ai-followups" id="aiFollowups" style="display:none;margin-top:10px;padding:12px;background:var(--panel2);border:1px solid var(--line);border-radius:14px;">
+          <div style="font-size:11px;font-weight:800;text-transform:uppercase;color:var(--muted);letter-spacing:.6px;margin-bottom:8px;display:flex;align-items:center;gap:6px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>Suggested Next Steps (1-Click)</span>
+          </div>
+          <div class="chips" id="followupChips" style="gap:6px;"></div>
+        </div>
         <label class="flabel">Skill packs active in the prompt</label>
         <div class="chips" id="activeSkillChips"></div>
         <details class="box">
@@ -1952,7 +1961,7 @@ body.gated #authBack{display:none !important}
 
   <!-- ============ CODE EDITOR ============ -->
   <section class="col col-code" aria-label="Code editor">
-    <div class="filetabs" role="tablist" aria-label="Files">
+    <div class="filetabs" id="editorTabs" role="tablist" aria-label="Files">
       <button class="ftab" role="tab" aria-selected="true" data-file="index.html">index.html</button>
       <button class="ftab" role="tab" aria-selected="false" data-file="styles.css">styles.css</button>
       <button class="ftab" role="tab" aria-selected="false" data-file="script.js">script.js</button>
@@ -1966,7 +1975,12 @@ body.gated #authBack{display:none !important}
 
   <!-- ============ FILES PANEL (workspace Files view) ============ -->
   <section class="col col-files" id="filesPanel" aria-label="Project files">
-    <div class="files-head"><b>Files</b><span class="layers-hint">3 files · click to edit</span></div>
+    <div class="files-head">
+      <b>Files</b>
+      <span class="layers-hint" id="fileCountBadge">3 files</span>
+      <span style="flex:1"></span>
+      <button type="button" class="btn small" id="btnAddFile">＋ Add File</button>
+    </div>
     <div id="fileList"></div>
     <p class="hint" style="padding:0 16px">Everything is real code — index.html, styles.css and script.js. Pick a file to open it in the code editor.</p>
   </section>
@@ -2037,6 +2051,7 @@ body.gated #authBack{display:none !important}
         <button class="btn small" id="inspDelete" style="color:var(--bad)">Delete</button>
         <button class="btn small" id="inspClose">✕</button>
       </h3>
+      <button type="button" class="btn primary small full" id="inspAskAi" style="margin:8px 0 12px;font-weight:750;letter-spacing:.2px;">✦ Ask AI to change this element</button>
       <div class="insp-grid">
         <div class="full"><label for="inspText">Text / words</label><textarea id="inspText" rows="2"></textarea></div>
         <div><label for="inspFontSize">Text size <span class="rval" id="inspFontSizeVal"></span></label><input type="range" id="inspFontSize" min="10" max="72" step="1" /></div>
@@ -2239,16 +2254,24 @@ function updateGutter(){
   gutter.textContent = s; gutter.scrollTop = editor.scrollTop;
 }
 function loadFileIntoEditor(){
-  editor.value = files[currentFile];
-  $("#codeMeta").textContent = currentFile + " · " + files[currentFile].length + " chars";
+  editor.value = files[currentFile] !== undefined ? files[currentFile] : "";
+  $("#codeMeta").textContent = currentFile + " · " + editor.value.length + " chars";
   updateGutter();
 }
-$$(".ftab").forEach(b => b.addEventListener("click", () => {
-  files[currentFile] = editor.value;
-  currentFile = b.dataset.file;
-  $$(".ftab").forEach(x => x.setAttribute("aria-selected", x===b ? "true":"false"));
-  loadFileIntoEditor();
-}));
+function renderEditorTabs(){
+  const tabWrap = $("#editorTabs");
+  if(!tabWrap) return;
+  tabWrap.innerHTML = Object.keys(files).map(f => {
+    return `<button class="ftab" role="tab" aria-selected="${f === currentFile ? 'true' : 'false'}" data-file="${f}">${f}</button>`;
+  }).join("");
+  $$(".ftab").forEach(b => b.addEventListener("click", () => {
+    files[currentFile] = editor.value;
+    currentFile = b.dataset.file;
+    $$(".ftab").forEach(x => x.setAttribute("aria-selected", x===b ? "true":"false"));
+    loadFileIntoEditor();
+  }));
+}
+renderEditorTabs();
 let renderTimer = null;
 editor.addEventListener("input", () => {
   files[currentFile] = editor.value;
@@ -3089,8 +3112,10 @@ async function runAgentBuild(userPrompt, kind, aiConfig){
       Object.keys(parsed).forEach(function(k){ files[k] = parsed[k]; });
 
       loadFileIntoEditor();
+      if(typeof renderEditorTabs === "function") renderEditorTabs();
       renderPreview();
       setView("preview");
+      renderFollowupSuggestions(kind, userPrompt);
       toast("Built successfully with " + aiConfig.name + "!");
     } else {
       console.warn("Could not parse file tags from AI response:", rawResponse);
@@ -3103,6 +3128,92 @@ async function runAgentBuild(userPrompt, kind, aiConfig){
     btn.disabled = false;
     btn.innerHTML = origBtnText;
   }
+}
+
+function renderFollowupSuggestions(kind, promptText){
+  var wrap = $("#aiFollowups");
+  var container = $("#followupChips");
+  if(!wrap || !container) return;
+  var pools = {
+    website: [
+      "Add sticky navigation with blur effect",
+      "Add interactive contact form with validation",
+      "Add customer testimonial slider",
+      "Add dark mode theme toggle switch"
+    ],
+    landing: [
+      "Add interactive pricing tier calculator",
+      "Add animated stats counter section",
+      "Add newsletter signup with confetti",
+      "Add animated FAQ accordion"
+    ],
+    shop: [
+      "Add slide-out shopping cart drawer with subtotal",
+      "Add product category filter pills",
+      "Add customer review star modal",
+      "Add quick-view modal on product cards"
+    ],
+    app: [
+      "Add interactive search and filter bar",
+      "Add animated daily streak progress bar",
+      "Add notifications drawer with badges",
+      "Add user settings modal with theme switcher"
+    ],
+    dashboard: [
+      "Add date-range picker filter for metrics",
+      "Add export table data to CSV button",
+      "Add interactive revenue vs orders chart",
+      "Add status filter pills for orders"
+    ]
+  };
+  var list = pools[kind] || pools.website;
+  container.innerHTML = list.map(function(s){
+    return '<button type="button" class="chip" data-followup="' + esc(s) + '" style="cursor:pointer;border-color:var(--accent);color:var(--ink);background:var(--panel);font-weight:650;">' + esc(s) + '</button>';
+  }).join("");
+  container.querySelectorAll("[data-followup]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var ta = $("#aiPrompt");
+      if(ta){
+        ta.value = b.dataset.followup;
+        ta.focus();
+        toast("Suggestion loaded — click Build to apply!");
+      }
+    });
+  });
+  wrap.style.display = "block";
+}
+
+// Visual Inspector: Ask AI about selected element (Lovable-style element targeting)
+var btnAskAi = $("#inspAskAi");
+if(btnAskAi){
+  btnAskAi.addEventListener("click", function(){
+    if(!selectedEl) return;
+    var tag = selectedEl.tagName.toLowerCase();
+    var cls = selectedEl.className ? "." + selectedEl.className.trim().split(/\s+/).filter(function(c){ return !c.startsWith("wb-"); }).join(".") : "";
+    var sample = (selectedEl.textContent || "").trim().slice(0, 35);
+    var targetDesc = "<" + tag + (cls ? cls : "") + ">" + (sample ? ' ("' + sample + '…")' : "");
+    var promptEl = $("#aiPrompt");
+    if(promptEl){
+      promptEl.value = "Update the selected " + targetDesc + ": ";
+      showTab("build");
+      if(window.innerWidth <= 1020) setView("build");
+      promptEl.focus();
+      promptEl.selectionStart = promptEl.selectionEnd = promptEl.value.length;
+      toast("Target element attached to AI prompt — describe your changes!");
+    }
+  });
+}
+
+// Top AI Badge Click -> Open Settings AI section
+var topAiBadge = $("#topAiBadge");
+if(topAiBadge){
+  topAiBadge.addEventListener("click", function(){
+    if(typeof setNav === "function") setNav("settings");
+    setTimeout(function(){
+      var setAiSec = $("#setAi");
+      if(setAiSec) setAiSec.scrollIntoView({ behavior:"smooth" });
+    }, 100);
+  });
 }
 
 // Runtime Preview Error Bridge for Self-Healing
@@ -3302,11 +3413,17 @@ function repoIndexHTML(){
   return html;
 }
 function projectFiles(){
-  return [
+  const list = [
     { path:"index.html", content: repoIndexHTML() },
-    { path:"styles.css", content: files["styles.css"] },
-    { path:"script.js", content: files["script.js"] },
+    { path:"styles.css", content: files["styles.css"] || "" },
+    { path:"script.js", content: files["script.js"] || "" },
   ];
+  Object.keys(files).forEach(f => {
+    if(f !== "index.html" && f !== "styles.css" && f !== "script.js"){
+      list.push({ path: f, content: files[f] || "" });
+    }
+  });
+  return list;
 }
 function projSlug(){ return ($("#projectName").value || "my-website").toLowerCase().replace(/[^a-z0-9-]+/g, "-").replace(/^-|-$/g, "") || "my-website"; }
 const b64 = s => btoa(unescape(encodeURIComponent(s)));
@@ -4116,15 +4233,36 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
   function renderFileList(){
     var list = $("#fileList"); if(!list) return;
     var dots = { "index.html":"#FF7A59", "styles.css":"#65A30D", "script.js":"#F2C94C" };
-    list.innerHTML = Object.keys(files).map(function(f){
-      return '<button type="button" class="file-row" data-openfile="' + f + '"><span class="fdot" style="background:' + dots[f] + '"></span><span class="fname">' + f + '</span><span class="fsize">' + files[f].length + ' chars</span></button>';
+    var fnames = Object.keys(files);
+    var countBadge = $("#fileCountBadge");
+    if(countBadge) countBadge.textContent = fnames.length + " files";
+    list.innerHTML = fnames.map(function(f){
+      return '<button type="button" class="file-row" data-openfile="' + f + '"><span class="fdot" style="background:' + (dots[f] || '#38BDF8') + '"></span><span class="fname">' + f + '</span><span class="fsize">' + files[f].length + ' chars</span></button>';
     }).join("");
     list.querySelectorAll("[data-openfile]").forEach(function(b){
       b.addEventListener("click", function(){
-        var tab = document.querySelector('.ftab[data-file="' + b.dataset.openfile + '"]');
-        if(tab) tab.click();
+        currentFile = b.dataset.openfile;
+        if(typeof renderEditorTabs === "function") renderEditorTabs();
+        loadFileIntoEditor();
         setWsMode("code");
       });
+    });
+  }
+  var btnAddFile = $("#btnAddFile");
+  if(btnAddFile){
+    btnAddFile.addEventListener("click", function(){
+      var name = prompt("Enter new file name (e.g. navbar.html, utils.js, data.json):");
+      if(!name) return;
+      name = name.trim().toLowerCase().replace(/[^a-z0-9._\-\/]/g, "");
+      if(!name){ toast("Invalid file name"); return; }
+      if(files[name]){ toast("File already exists"); return; }
+      files[name] = "";
+      currentFile = name;
+      renderFileList();
+      if(typeof renderEditorTabs === "function") renderEditorTabs();
+      loadFileIntoEditor();
+      setWsMode("code");
+      toast("Created " + name);
     });
   }
   $$("#moreMenu [data-more]").forEach(function(b){
@@ -4590,6 +4728,17 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
     if(el){
       el.textContent = n ? n + " provider" + (n > 1 ? "s" : "") + " connected (" + list.join(", ") + ")" : "No keys saved (using offline templates)";
     }
+    var topBadge = $("#topAiBadge");
+    if(topBadge){
+      var activeName = ai.provider === "auto" ? "⚡ Auto Engine" :
+        ai.provider === "groq" ? "⚡ Groq (Llama 3.3)" :
+        ai.provider === "gemini" ? "✨ Gemini 2.5" :
+        ai.provider === "nvidia" ? "🟢 NVIDIA NIM" :
+        ai.provider === "claude" ? "🟣 Claude 3.7" :
+        ai.provider === "openai" ? "⚪ ChatGPT" :
+        ai.provider === "custom" ? "🌐 Custom AI" : "📦 Template";
+      topBadge.textContent = activeName;
+    }
   }
   aiStatus();
 
@@ -4616,6 +4765,7 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
       ai.provider = this.value;
       store("wb_ai_keys", ai);
       if($("#setAiProvider")) $("#setAiProvider").value = this.value;
+      aiStatus();
       toast("Engine switched to " + this.options[this.selectedIndex].text);
     });
   }
