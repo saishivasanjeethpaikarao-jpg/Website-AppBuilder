@@ -114,8 +114,12 @@
   <div class="home-inner">
     <section class="ruixen-hero">
       <div class="ruixen-header">
-        <h1 class="ruixen-title">Ruixen AI</h1>
-        <p class="ruixen-sub">Build something amazing — just start typing below.</p>
+        <div class="elhir-hero-badge" style="display:inline-flex;align-items:center;gap:7px;padding:5px 13px;border-radius:9999px;background:rgba(124, 58, 237, 0.15);border:1px solid rgba(167, 139, 250, 0.35);color:#C4B5FD;font-size:12.5px;font-weight:600;margin-bottom:16px;">
+          <span style="width:7px;height:7px;border-radius:50%;background:#8B5CF6;box-shadow:0 0 8px #8B5CF6;"></span>
+          <span>✦ Elhir Autonomous Studio · Universal BYOK</span>
+        </div>
+        <h1 class="ruixen-title">Elhir AI</h1>
+        <p class="ruixen-sub">Build software at the speed of thought — describe your app below.</p>
       </div>
 
       <div class="ruixen-input-card">
@@ -538,17 +542,28 @@
   <!-- ============ LEFT PANEL ============ -->
   <section class="col col-build" aria-label="Builder panel">
     <div class="tabs" role="tablist">
-      <button class="tab" role="tab" aria-selected="true" data-tab="build">✦ Build</button>
+      <button class="tab" role="tab" aria-selected="true" data-tab="build">✦ Chat</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="add">＋ Add</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="tasks">Tasks</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="brief">Brief</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="skills">Skills</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="plugins">Plugins</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="publish">Publish</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="artifacts">Pieces</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="data">Data</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="seo">SEO</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="inbox">Inbox</button>
+      <button class="tab" role="tab" aria-selected="false" id="btnTabMore" aria-haspopup="menu">More ▾</button>
+      <div class="tab-more-menu" id="tabMoreMenu" hidden>
+        <button type="button" class="tab-more-item" data-tabref="skills">Skills library</button>
+        <button type="button" class="tab-more-item" data-tabref="plugins">Plugins &amp; Tools</button>
+        <button type="button" class="tab-more-item" data-tabref="brief">Project brief</button>
+        <button type="button" class="tab-more-item" data-tabref="data">Data &amp; tables</button>
+        <button type="button" class="tab-more-item" data-tabref="seo">SEO helper</button>
+        <button type="button" class="tab-more-item" data-tabref="inbox">Feedback inbox</button>
+        <button type="button" class="tab-more-item" data-tabref="publish">Publish status</button>
+        <button type="button" class="tab-more-item" data-tabref="artifacts">Project pieces</button>
+      </div>
+      <button class="tab" style="display:none;" data-tab="brief"></button>
+      <button class="tab" style="display:none;" data-tab="skills"></button>
+      <button class="tab" style="display:none;" data-tab="plugins"></button>
+      <button class="tab" style="display:none;" data-tab="publish"></button>
+      <button class="tab" style="display:none;" data-tab="artifacts"></button>
+      <button class="tab" style="display:none;" data-tab="data"></button>
+      <button class="tab" style="display:none;" data-tab="seo"></button>
+      <button class="tab" style="display:none;" data-tab="inbox"></button>
     </div>
     <div class="tabbody">
 
@@ -1335,6 +1350,25 @@ function showTab(name){
   $$(".tabpage").forEach(p => p.classList.toggle("active", p.id === "page-" + name));
 }
 $$(".tab").forEach(t => t.addEventListener("click", () => showTab(t.dataset.tab)));
+var btnTabMore = $("#btnTabMore");
+var tabMoreMenu = $("#tabMoreMenu");
+if(btnTabMore && tabMoreMenu){
+  btnTabMore.addEventListener("click", (e) => {
+    e.stopPropagation();
+    tabMoreMenu.hidden = !tabMoreMenu.hidden;
+  });
+  document.addEventListener("click", (e) => {
+    if(!e.target.closest("#tabMoreMenu") && e.target !== btnTabMore){
+      tabMoreMenu.hidden = true;
+    }
+  });
+  $$(".tab-more-item").forEach(item => {
+    item.addEventListener("click", () => {
+      tabMoreMenu.hidden = true;
+      showTab(item.dataset.tabref);
+    });
+  });
+}
 $("#btnGotoPublish").addEventListener("click", () => { if(window.__openPublishPop){ window.__openPublishPop(); } else { showTab("publish"); setView("build"); } });
 function setView(v){
   $("#mainGrid").dataset.view = v;
@@ -2732,29 +2766,7 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
     try{ rec.start(); }catch(err){ voiceBtn.classList.remove("listening"); }
   });
 
-  /* Quiet integrations footer in the side panel */
-  var colBuild = document.querySelector(".col-build");
-  if(colBuild){
-    var integ = document.createElement("div");
-    integ.className = "integrations";
-    var INTEG_LOGOS = [
-      ["Analytics", "#141419", '<svg viewBox="0 0 24 24" fill="none" stroke="#C6F135" stroke-width="2.2" stroke-linecap="round"><path d="M6 20v-5M11 20V9M16 20v-8M21 20V5" transform="translate(-1.5 0)"/></svg>'],
-      ["Cloud storage", "#F48120", '<svg viewBox="0 0 24 24"><path d="M7.2 18.5a4.2 4.2 0 0 1-.5-8.36 6 6 0 0 1 11.5 1.6 3.6 3.6 0 0 1-1 6.76z" fill="#fff"/></svg>'],
-      ["Connectors", "#141419", '<svg viewBox="0 0 24 24" fill="none" stroke="#FF6B9D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7.5V3.8M15 7.5V3.8"/><path d="M5.5 7.5h13V12a6.5 6.5 0 0 1-13 0z"/><path d="M12 18.5V21"/></svg>'],
-      ["Supabase", "#1C1C1C", '<svg viewBox="0 0 24 24"><path d="M13.2 2 4.8 13.6h6L9.6 22 19.4 10h-6.4z" fill="#3ECF8E"/></svg>']
-    ];
-    integ.innerHTML = '<p class="integ-title">Integrations</p>' +
-      INTEG_LOGOS.map(function(row){
-        return '<div class="integ-row"><span class="integ-logo" style="background:' + row[1] + '">' + row[2] + '</span><span class="integ-name">' + row[0] + '</span><button type="button" class="integ-btn">Connect</button></div>';
-      }).join("");
-    integ.querySelectorAll(".integ-btn").forEach(function(b){
-      b.addEventListener("click", function(){
-        showTab("plugins");
-        if(window.innerWidth <= 1020) setView("build");
-      });
-    });
-    colBuild.appendChild(integ);
-  }
+  /* Quiet integrations handled in Plugins tab */
 
   /* Preview / Code / Layers tabs */
   var panel = document.getElementById("layersPanel");
