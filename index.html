@@ -1296,7 +1296,7 @@ $$(".view-switch button").forEach(b => b.addEventListener("click", () => setView
 
 /* ================= TEMPLATES ================= */
 const TEMPLATES = [
- { id:"landing", name:"Landing page", desc:"Hero, features, pricing and a signup form", make:() => genSite({kind:"landing", name:"Brightpath Coaching", topic:"coaching that helps students plan their studies and careers", style:"modern", palette:PALETTES.blue}) },
+ { id:"landing", name:"Landing page", desc:"Hero, features, metrics bento and contact form", make:() => JSON.parse(JSON.stringify(STARTER)) },
  { id:"portfolio", name:"Portfolio", desc:"For a designer, photographer or student", make:() => genSite({kind:"portfolio", name:"Aarav Mehta", topic:"a freelance graphic designer showing recent projects", style:"minimal", palette:PALETTES.ink}) },
  { id:"shop", name:"Online shop", desc:"Product cards with prices and buy buttons", make:() => genSite({kind:"shop", name:"Terra Pots", topic:"handmade clay pots and planters shop", style:"playful", palette:PALETTES.green}) },
  { id:"app", name:"Mobile app UI", desc:"Phone-style app with bottom navigation", make:() => genSite({kind:"app", name:"FitTrack", topic:"a fitness tracking app with workouts and streaks", style:"bold", palette:PALETTES.orange}) },
@@ -2863,6 +2863,10 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
     var cur = null;
     projects.forEach(function(p){ if(p.id === currentProjectId) cur = p; });
     if(cur){
+      if(cur.files && cur.files["index.html"] && (cur.files["index.html"].includes("Brightpath Coaching") || cur.files["index.html"].includes("Nova Studio") || cur.files["index.html"].includes("Sharma Bakery"))){
+        cur.files = JSON.parse(JSON.stringify(STARTER));
+        store("wb_projects", projects);
+      }
       files = JSON.parse(JSON.stringify(cur.files));
       document.getElementById("projectName").value = cur.name;
       document.getElementById("urlPill").textContent = cur.name + " — live preview";
@@ -2883,6 +2887,10 @@ document.getElementById("projectName").addEventListener("input", function(){ doc
     projects.forEach(function(x){ if(x.id === id) p = x; });
     if(!p) return;
     currentProjectId = id;
+    if(p.files && p.files["index.html"] && (p.files["index.html"].includes("Brightpath Coaching") || p.files["index.html"].includes("Nova Studio") || p.files["index.html"].includes("Sharma Bakery"))){
+      p.files = JSON.parse(JSON.stringify(STARTER));
+      store("wb_projects", projects);
+    }
     files = JSON.parse(JSON.stringify(p.files));
     historyStack = []; selectedEl = null;
     document.getElementById("projectName").value = p.name;
